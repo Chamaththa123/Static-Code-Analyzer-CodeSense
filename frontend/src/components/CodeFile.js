@@ -5,6 +5,7 @@ import Class from './Classes';
 import Count from './Count';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Footer from './Footer';
 
 function CodeFile() {
   const [fileName, setFileName] = useState('');
@@ -171,7 +172,8 @@ function CodeFile() {
         </Row>
 
       </div>
-
+      <br></br>
+<Footer/>
     </div>
   );
 }
