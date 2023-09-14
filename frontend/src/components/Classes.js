@@ -72,7 +72,7 @@ function Class({ fileExtension1, fileContent1, file }) {
 
       {classInfo.length > 0 && (
         <div>
-          <h2>All Classes:</h2>
+          <h4>All Classes:</h4>
           <ul>
             {classInfo.map((classData, index) => (
               <li key={index}>
@@ -85,14 +85,14 @@ function Class({ fileExtension1, fileContent1, file }) {
       <br></br>
 {baseClass && (
         <div>
-          <h2>Base Class:</h2>
+          <h4>Base Class:</h4>
           <p>Class {baseClass}</p>
         </div>
       )}
       
       {classInfo.length > 0 && (
         <div>
-          <h2>Inheritance:</h2>
+          <h4>Inheritance:</h4>
           <ul>
   {classInfo.map((classData, index) => (
     <li key={index}>
