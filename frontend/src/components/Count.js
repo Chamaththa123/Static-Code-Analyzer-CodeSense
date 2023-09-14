@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import BarChart from './Graph';
+import Table from 'react-bootstrap/Table';
 
 function Count({ fileExtension1, fileContent1, file }) {
   const [fileName, setFileName] = useState('');
@@ -74,19 +75,57 @@ function Count({ fileExtension1, fileContent1, file }) {
   return (
     <div>
       <h2>Raw Metrics</h2>
-      <ul>
-        <li>Single-line Comments: {singleLineCommentsCount}</li>
-        <li>Multi-line Comments: {multiLineCommentsCount}</li>
-        <li>If-Else Statements: {ifElseCount}</li>
-        <li>For Loops: {forLoopCount}</li>
-        <li>While Loops: {whileLoopCount}</li>
-        <li>Return Statements: {returnStatementCount}</li>
-        <li>String Count: {stringCount}</li>
-        <li>Int Count: {intCount}</li>
-        <li>Double Count: {doubleCount}</li>
-        <li>Boolean Count: {booleanCount}</li>
-        <li>Float Count: {floatCount}</li>
-      </ul>
+
+      <center>
+      <Table striped bordered style={{width:'80%'}}>
+      <tbody>
+        <tr>
+          <td>Single-line Comments</td>
+          <td>{singleLineCommentsCount}</td>
+        </tr>
+        <tr>
+          <td>Multi-line Comments</td>
+          <td>{multiLineCommentsCount}</td>
+        </tr>
+        <tr>
+          <td>If-Else Statements</td>
+          <td>{ifElseCount}</td>
+        </tr>
+        <tr>
+          <td>For Loops</td>
+          <td>{forLoopCount}</td>
+        </tr>
+        <tr>
+          <td>While Loops</td>
+          <td>{whileLoopCount}</td>
+        </tr>
+        <tr>
+          <td>Return Statements</td>
+          <td>{returnStatementCount}</td>
+        </tr>
+        <tr>
+          <td>String Count</td>
+          <td>{stringCount}</td>
+        </tr>
+        <tr>
+          <td>Int Count</td>
+          <td>{intCount}</td>
+        </tr>
+        <tr>
+          <td>Double Count</td>
+          <td>{doubleCount}</td>
+        </tr>
+        <tr>
+          <td>Boolean Count</td>
+          <td>{booleanCount}</td>
+        </tr>
+        <tr>
+          <td>Float Count</td>
+          <td>{floatCount}</td>
+        </tr>
+      </tbody>
+    </Table>
+      </center>
 
       <BarChart
         singleLineCommentsCount={singleLineCommentsCount}

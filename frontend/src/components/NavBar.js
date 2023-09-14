@@ -6,7 +6,7 @@ function Header() {
   return (
     <Navbar className="Header" >
       
-        <h1 style={{paddingLeft:'5%',paddingTop:'1%'}}>Static Code Analyzer</h1>
+        <h1 style={{paddingLeft:'2%',paddingTop:'1%'}}>Static Code Analyzer</h1>
     </Navbar>
   );
 }

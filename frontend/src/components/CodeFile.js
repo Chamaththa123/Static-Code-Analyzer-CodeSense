@@ -121,11 +121,13 @@ function CodeFile() {
   return (
     <div className='App'>
       <Navbar />
-      <div style={{ paddingLeft: '0%', paddingTop: '5%',paddingRight: '0%' }}>
+      <div style={{  paddingTop: '5%' }}>
+        <div style={{  paddingLeft: '2%' }}>
         <h3>Upload Java File</h3>
         <input type='file' onChange={handleFileChange}></input>
+        </div>
         <br></br><br></br>
-        <br></br><br></br>
+   
 
 
         <Row>
