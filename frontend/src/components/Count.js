@@ -74,8 +74,8 @@ function Count({ fileExtension1, fileContent1, file }) {
 
   return (
     <div>
-      <h2>Raw Metrics</h2>
-
+      <h4>Raw Metrics</h4>
+<br></br>
       <center>
       <Table striped bordered style={{width:'80%'}}>
       <tbody>

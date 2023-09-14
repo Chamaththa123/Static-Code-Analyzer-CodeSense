@@ -57,7 +57,7 @@ function SyntaxError({ fileExtension1, fileContent1, file }) {
     
       {syntaxErrors.length > 0 && (
         <div>
-          <h2>Syntax Errors:</h2>
+          <h4>Syntax Errors:</h4>
           <ul>
             {syntaxErrors.map((error, index) => (
               <li key={index}>
