@@ -6,6 +6,7 @@ import Count from './Count';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Footer from './Footer';
+import DublicateCode from './dublicateCode';
 
 function CodeFile() {
   const [fileName, setFileName] = useState('');
@@ -160,7 +161,10 @@ function CodeFile() {
 
             <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
             </div>
-
+            <br></br>
+            <div class="card" style={{ backgroundColor: '#181833', color: 'white' }}>
+<DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName}/>
+</div>
 
           </Col>
           <Col>
