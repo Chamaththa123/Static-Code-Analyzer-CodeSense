@@ -1,0 +1,39 @@
+/* Header container */
+.header {
+  background: yellow;
+  height: 60px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Header links */
+.header-link {
+  text-decoration: none;
+  margin-left: 15px;
+  color: #000; /* Black color */
+}
+
+/* Profile image */
+.profile-image {
+  width: 50px;
+  margin-left: 15px;
+  float: right;
+}
+
+/* Username */
+.username {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.traffic-header {
+  margin-top: 40px; /* Set the margin-top as needed */
+  /* Other styles for the "traffic-header" class */
+}
+
+.traffic-submit-btn {
+  margin-bottom: 50px;
+  width: 100px;
+}
