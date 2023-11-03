@@ -1,0 +1,14 @@
+.main {
+    margin-left: 16%; /* Same as the width of the sidenav */
+    font-size: 28px; /* Increased text to enable scrolling */
+    color: white;
+  }
+.content{
+    padding: 8%;
+    font-size: 15px;
+}
+.submit-btn{
+    float: left;
+    margin-top: 2%;
+    background-color: #0e0e1f;
+}

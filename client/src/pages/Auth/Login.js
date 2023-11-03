@@ -31,7 +31,7 @@ function Start() {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/");
+        navigate("/Register");
       } else {
         window.alert(res.data.message)
       }

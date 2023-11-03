@@ -1,11 +1,13 @@
 /* Header container */
 .header {
-  background: yellow;
+  background: #0e0e1f;
   height: 60px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding: 0 20px;
+  margin-left: -2%;
+  width: 102.6%;
 }
 
 /* Header links */
@@ -22,6 +24,12 @@
   float: right;
 }
 
+body, html {
+  background-color: #181833;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 /* Username */
 .username {
   font-size: 20px;

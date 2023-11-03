@@ -9,6 +9,7 @@ import AdminDashboard from "./pages/Admin/AdminDashboard";
 import AddTraffic from "./pages/Traffic/AddTraffic";
 import AllTraffic from "./pages/Traffic/AllTraffic";
 import UpdateTraffic from "./pages/Traffic/UpdateTraffic";
+import UploadCode from "./pages/UploadCode";
 
 
 
@@ -19,6 +20,7 @@ function App() {
         {/* <Route path="/" element={<HomePage />} /> */}
         <Route path="/Register" element={<Register />} />
         <Route path="/" element={<Login/>} />
+        <Route path="/Upload" element={<UploadCode/>} />
         <Route path="/AddTraffic" element={<AddTraffic/>} />
         <Route path='/Traffic/:id' element={<UpdateTraffic/>}></Route>
         <Route path="/dashboard" element={<PrivateRoute />}>
