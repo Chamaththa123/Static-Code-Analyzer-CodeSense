@@ -26,11 +26,11 @@ function Start() {
       if (res && res.data.success) {
         window.alert(res.data && res.data.message);
         setAuth({
-            ...auth,
-            user: res.data.user,
-            token: res.data.token,
-          });
-          localStorage.setItem("auth", JSON.stringify(res.data));
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
         navigate("/");
       } else {
         window.alert(res.data.message)
@@ -41,45 +41,45 @@ function Start() {
     }
   };
   return (
-    <div style={{margin:'0',overflow:'hidden'}}>
+    <div style={{ margin: '0', overflow: 'hidden' }}>
 
-     
-     <img src={start} className='start'/>
-     <img src={logo} className='start2'/>
 
-     <div className="button-container2">
-    
-     <pre> Static Code Analysis</pre>
-        </div>
+      <img src={start} className='start' />
+      <img src={logo} className='start2' />
 
-     <div className="button-container">
-    
-     <Form onSubmit={handleSubmit}>
-     <center><pre><h3>LogIn</h3></pre></center>
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <pre>Email Address</pre>
-        <pre><Form.Control type="email" placeholder="Enter email" value={email}
-              onChange={(e) => setEmail(e.target.value)}/></pre>
-      </Form.Group>
+      <div className="button-container2">
 
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <pre>Password</pre>
-        <pre><Form.Control type="password" placeholder="Password" value={password}
-              onChange={(e) => setPassword(e.target.value)}/></pre>
-      </Form.Group>
-      <pre><a onClick={() => {
-                navigate("/ForgotPassword");
-              }} href="" style={{textDecoration:'none'}}>Forgot Password ?</a></pre>
-      <pre><Button variant="primary" type="submit" style={{width:'100%'}}>
-      LogIn
-      </Button></pre>
-      <br/>
-      <br/>
-      <center><pre>Need an account? <a onClick={() => {
-                navigate("/ForgotPassword");
-              }} href="" style={{textDecoration:'none'}}>Register</a></pre></center>
-    </Form>
-        </div>
+        <pre> Static Code Analysis</pre>
+      </div>
+
+      <div className="button-container">
+
+        <Form onSubmit={handleSubmit}>
+          <center><pre><h3>LogIn</h3></pre></center>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <pre>Email Address</pre>
+            <pre><Form.Control type="email" placeholder="Enter email" value={email}
+              onChange={(e) => setEmail(e.target.value)} /></pre>
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <pre>Password</pre>
+            <pre><Form.Control type="password" placeholder="Password" value={password}
+              onChange={(e) => setPassword(e.target.value)} /></pre>
+          </Form.Group>
+          <pre><a onClick={() => {
+            navigate("/ForgotPassword");
+          }} href="" style={{ textDecoration: 'none' }}>Forgot Password ?</a></pre>
+          <pre><Button variant="primary" type="submit" style={{ width: '100%' }}>
+            LogIn
+          </Button></pre>
+          <br />
+          <br />
+          <center><pre>Need an account? <a onClick={() => {
+            navigate("/ForgotPassword");
+          }} href="" style={{ textDecoration: 'none' }}>Register</a></pre></center>
+        </Form>
+      </div>
     </div>
   )
 }
