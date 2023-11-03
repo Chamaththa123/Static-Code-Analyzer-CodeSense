@@ -55,30 +55,6 @@ function DublicateCode({ fileContent1 }) {
     setNonDuplicateCode(nonDuplicateLines);
     setInput(nonDuplicateLines.join('\n'));
   }, [fileContent1]);
-  const renderCodeWithLineNumbers = () => {
-    const lines = input.split('\n');
-    let lineCount = 0;
-
-    return (
-      <div>
-        <pre>
-          {lines.map((line, index) => {
-            if (line.trim() === '') {
-              return null; // Skip empty lines
-            }
-
-            lineCount++;
-            return (
-              <div key={index}>
-                <span style={{ marginRight: '10px' }}>{lineCount}</span>
-                <span>{line}</span>
-              </div>
-            );
-          })}
-        </pre>
-      </div>
-    );
-  };
 
   const removeComments = input.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '');
 

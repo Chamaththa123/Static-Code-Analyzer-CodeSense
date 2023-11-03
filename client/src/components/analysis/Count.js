@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BarChart from './Graph';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 function Count({ fileExtension1, fileContent1, file }) {
   const [fileName, setFileName] = useState('');
@@ -74,20 +76,48 @@ function Count({ fileExtension1, fileContent1, file }) {
 
   return (
     <div>
-      <ul>
-        <li>Single-line Comments: {singleLineCommentsCount}</li>
-        <li>Multi-line Comments: {multiLineCommentsCount}</li>
-        <li>If-Else Statements: {ifElseCount}</li>
-        <li>For Loops: {forLoopCount}</li>
-        <li>While Loops: {whileLoopCount}</li>
-        <li>Return Statements: {returnStatementCount}</li>
-        <li>String Count: {stringCount}</li>
-        <li>Int Count: {intCount}</li>
-        <li>Double Count: {doubleCount}</li>
-        <li>Boolean Count: {booleanCount}</li>
-        <li>Float Count: {floatCount}</li>
-      </ul>
-
+      <Tabs
+      defaultActiveKey="profile"
+      id="uncontrolled-tab-example"
+      className="mb-3"
+    >
+      <Tab eventKey="home" title="Word frequency">
+      <table className="table" style={{color:'white',width:'20%'}} >
+        <thead>
+          <tr>
+            <th>Word</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+              <td style={{textAlign:'center'}}>Return</td>
+              <td style={{textAlign:'center'}}>{returnStatementCount}</td>
+            </tr>
+            <tr>
+              <td style={{textAlign:'center'}}>String</td>
+              <td style={{textAlign:'center'}}>{stringCount}</td>
+            </tr>
+            <tr>
+              <td style={{textAlign:'center'}}>Int</td>
+              <td style={{textAlign:'center'}}>{intCount}</td>
+            </tr>
+            <tr>
+              <td style={{textAlign:'center'}}>Double</td>
+              <td style={{textAlign:'center'}}>{doubleCount}</td>
+            </tr>
+            <tr>
+              <td style={{textAlign:'center'}}>Boolean</td>
+              <td style={{textAlign:'center'}}>{booleanCount}</td>
+            </tr>
+            <tr>
+              <td style={{textAlign:'center'}}>Float</td>
+              <td style={{textAlign:'center'}}>{floatCount}</td>
+            </tr>
+        </tbody>
+      </table>
+      </Tab>
+      <Tab eventKey="profile" title="Bar Chart">
       <BarChart
         singleLineCommentsCount={singleLineCommentsCount}
         multiLineCommentsCount={multiLineCommentsCount}
@@ -101,6 +131,13 @@ function Count({ fileExtension1, fileContent1, file }) {
         booleanCount={booleanCount}
         floatCount={floatCount}
       />
+      </Tab>
+      <Tab eventKey="contact" title="Pie Chart">
+        Tab content for Contact
+      </Tab>
+    </Tabs>
+
+      
     </div>
   );
 }
