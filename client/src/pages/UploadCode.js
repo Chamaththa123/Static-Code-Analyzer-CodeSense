@@ -321,7 +321,7 @@ function UploadCode() {
                     id="uncontrolled-tab-example"
                     className="mb-3"
                   >
-                    <Tab eventKey="home" title="Original Code">
+                    <Tab eventKey="profile" title="Original Code">
                       <p style={{ textAlign: 'center' }}>
                         <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
                         <span style={{ color: '#164EFC' }}>• </span> For Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -331,7 +331,7 @@ function UploadCode() {
                       </p>
                       {renderCodeWithClassHighlight()}
                     </Tab>
-                    <Tab eventKey="profile" title="Calculate Complexity for Original Code">
+                    <Tab eventKey="home" title="Calculate Complexity for Original Code">
                       <table className="table" style={{ color: 'white' }}>
                         <thead>
                           <tr>
