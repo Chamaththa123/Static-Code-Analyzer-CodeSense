@@ -300,16 +300,38 @@ function UploadCode() {
         <div className='content'>
           <h3>Upload Code File</h3>
           <input type="file" name="file" onChange={handleFileChange} />
-          {file && (
+          {file ? (
             <div>
               <p>File Name: {file.name}</p>
-              <p>Code: This is  Code</p>
+              <p>Code: This is Code</p>
+              <form onSubmit={saveCode} encType="multipart/form-data">
+                <Button className="submit-btn" type="submit">Save Code</Button>
+              </form>
+            </div>
+          ) : (
+            
+            <div>
+              <br /><br />
+              <center><h2>Welcome to <span style={{fontWeight:200}}><><i>CodeSense</i></></span></h2></center>
+              <p>Are you a Java developer looking to improve your code quality, optimize performance, and enhance your software's maintainability? </p>
+              <p><i>Look no further!</i> Our Code Analyzer for Java is your go-to tool for assessing and improving your Java codebase. This web app provides a comprehensive suite of features to make your coding experience better and more efficient.</p>
+            <h5>How to Use:</h5>
+<ul>
+  <li><b>Upload Your Java Code: </b> Click on the "Upload Code" button, select your Java file, and upload it. You'll instantly see your original code content.</li>
+<li><b>Analyze Complexity: </b>Click the "Analyze Complexity" button to assess your code's complexity. Understand where improvements are needed to enhance performance and maintainability.</li>
+<li><b>View Software Composition Metrics:</b>Explore software composition metrics to visualize your code's structure, class dependencies, and more.</li>
+<li><b>Identify Syntax Errors: </b>Check for syntax errors in your code by clicking the "Check Syntax" button. We'll highlight any issues for you to address.</li>
+<li><b>Detect Duplicated Code: </b>The "Detect Duplicates" feature will identify and display duplicated code segments, making it easy for you to refactor your codebase.</li>
+<li><b>Recalculate Complexity: </b>After resolving duplicated code, use the "Recalculate Complexity" button to reassess your code's complexity without the redundancy.</li>
+</ul>
+<p>Start using our Code Analyzer for Java today to optimize your code, improve its quality, and streamline your development process. Whether you're a seasoned Java developer or
+   just getting started, our web app is here to support you in your coding journey.</p>
+   <p><i>Make your Java code cleaner, more efficient, and error-free with the Code Analyzer for Java. Happy coding!</i></p>
             </div>
           )}
+
           {error && <p style={{ color: 'red' }}>{error}</p>}
-          <form onSubmit={saveCode} encType="multipart/form-data">
-            <Button className="submit-btn" type="submit">Save Code</Button>
-          </form>
+
           <br /><br /><br />
           {file && (
             <Accordion defaultActiveKey="0">
