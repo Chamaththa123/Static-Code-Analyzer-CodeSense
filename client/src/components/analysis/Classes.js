@@ -6,7 +6,6 @@ function Class({ fileExtension1, fileContent1, file }) {
   const [fileExtension, setFileExtension] = useState('');
   const [javaFileNotice, setJavaFileNotice] = useState(false);
   const [classInfo, setClassInfo] = useState([]);
-  const [baseClass, setBaseClass] = useState('');
 
   useEffect(() => {
     
@@ -22,10 +21,6 @@ function Class({ fileExtension1, fileContent1, file }) {
           const className = match[1];
           const inheritance = match[2] || 'No inheritance';
 
-          // Check if this is the base class
-          if (inheritance === 'No inheritance' &&  className!=='Main') {
-            setBaseClass(className);
-          }
 
           return {
             className,
@@ -47,7 +42,6 @@ function Class({ fileExtension1, fileContent1, file }) {
         setFileExtension(fileExtension1);
         setJavaFileNotice(false);
         setClassInfo([]); 
-        setBaseClass(''); 
       }
     } else {
       setFileName(file.name);
@@ -55,7 +49,6 @@ function Class({ fileExtension1, fileContent1, file }) {
       setFileExtension(fileExtension1);
       setJavaFileNotice(false);
       setClassInfo([]); 
-      setBaseClass(''); 
     }
   }, [fileExtension1, fileContent1, file]);
 
@@ -83,12 +76,7 @@ function Class({ fileExtension1, fileContent1, file }) {
         </div>
       )}
       <br></br>
-{baseClass && (
-        <div>
-          <h2>Base Class:</h2>
-          <p>Class {baseClass}</p>
-        </div>
-      )}
+
       
       {classInfo.length > 0 && (
         <div>
