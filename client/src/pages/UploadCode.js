@@ -195,7 +195,7 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{fontWeight:600}}> Raw Metrics</c></b></Accordion.Header>
+                <Accordion.Header><b><c style={{fontWeight:600}}> Row Software Composition Analysis Metrics</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
                 <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
