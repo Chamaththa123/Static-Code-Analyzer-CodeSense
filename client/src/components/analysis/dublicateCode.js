@@ -270,7 +270,7 @@ function DublicateCode({ fileContent1 }) {
       id="noanim-tab-example"
       className="mb-3"
     >
-      <Tab eventKey="home" title="Code With Duplicate Code Lines">
+      <Tab eventKey="home" title="Duplicate Code Lines">
         {duplicateCode.map((duplicateLine, index) => (
           <c key={index}>
             <p>({index+1})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {duplicateLine}</p>
