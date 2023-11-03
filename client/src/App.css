@@ -14,7 +14,8 @@
 .header-link {
   text-decoration: none;
   margin-left: 15px;
-  color: #000; /* Black color */
+  color: #ffffff; /* Black color */
+  font-size: 15px;
 }
 
 /* Profile image */
@@ -32,7 +33,7 @@ body, html {
 }
 /* Username */
 .username {
-  font-size: 20px;
+  font-size: 15px;
   margin-right: 10px;
 }
 

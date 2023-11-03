@@ -1,7 +1,7 @@
 import React from "react";
 import { useAuth } from "../../context/auth";
-import profile from "../../images/profile.png";
 import "../../App.css"; // Import the external CSS file for styles
+import Dropdown from 'react-bootstrap/Dropdown';
 
 function Header() {
   const [auth, setAuth] = useAuth();
@@ -26,15 +26,23 @@ function Header() {
           </>
         ) : (
           <>
-            
-            <img src={profile} alt="Profile" className="profile-image" />
-            <span className="username"><b>{auth?.user?.name}</b></span>
-            <a onClick={handleLogout} className="header-link"><b>Logout</b></a>
+
+            <Dropdown>
+              <Dropdown.Toggle  id="dropdown-basic" style={{backgroundColor:'#0e0e1f',borderColor:'#0e0e1f'}}>
+                {auth?.user?.name}
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Profile</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogout} href="/">Logout</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
+
           </>
         )}
       </div>
     </div>
-    
+
   );
 }
 
