@@ -9,6 +9,12 @@ import SyntaxError from "../components/analysis/SyntaxError";
 import Count from "../components/analysis/Count";
 import DublicateCode from "../components/analysis/dublicateCode";
 import Class from "../components/analysis/Classes";
+import { Lexer } from "chevrotain";
+import { allTokens } from "../components/analysis/code_Metrics";
+import { parse } from "java-parser";
+import { isBranchStatement, isIterationStatement, isSwitchStatement, isClassDeclaration, countCases } from "../components/analysis/codeAnalysis";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 function UploadCode() {
   const [file, setFile] = useState('');
@@ -17,6 +23,9 @@ function UploadCode() {
   const [date, setDate] = useState('');
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState('');
+
+  const [tokens, setTokens] = useState([]);
+  const [tokenizing, setTokenizing] = useState(false);
 
   const handleFileChange = (e) => {
     setFileName(e.target.files[0]);
@@ -68,6 +77,134 @@ function UploadCode() {
       console.error("Error:", error);
     }
   };
+
+  let nestingLevel = 0;
+  let currentNestingLevel = 0;
+  let classStart = 0;
+  let inheritance = 0;
+
+  function isMethodDeclaration(code) {
+    // Check for the presence of access modifiers and the absence of "class" and "main"
+    if ((code.includes("public") || code.includes("private") || code.includes("protected")) &&
+      !code.includes("class") && !code.includes("main")) {
+      return true;
+    }
+    return false;
+  }
+  const removeComments = fileContent.replace(/\/\*[\s\S]*?\*\/|([^\\:]|^)\/\/.*$/gm, '');
+  let caseCount = countCases(removeComments);
+  // findInheritance(input);
+
+  // console.log(caseCount);
+
+  const lines = removeComments.split("\n");
+
+  console.log(lines);
+
+  var report = [];
+
+  for (const line of lines) {
+    const startReprt = {
+      line: '',
+      metric: {
+        typeOfControlStructure: 0,
+        nestingLevelStructure: 0,
+        inheritanceLevelStructure: 0
+      }
+    }
+
+    if (line.includes("class")) {
+      classStart++;
+    }
+    if (line.includes("}")) {
+      classStart--;
+    }
+
+    const lexer = new Lexer(allTokens);
+    const tokenArray = lexer.tokenize(line);
+    // console.log(tokenArray.tokens.length);
+
+    startReprt.line = line;
+
+    //Weight Due to Type of Control Structures (Wc)
+    if (isBranchStatement(line)) {
+      startReprt.metric.typeOfControlStructure = 1;
+
+    }
+    if (isIterationStatement(line)) {
+      startReprt.metric.typeOfControlStructure = 2;
+    }
+    if (isSwitchStatement(line)) {
+      startReprt.metric.typeOfControlStructure = 3;
+    }
+
+    // Weight Due to Nesting Level of Control Structures (Wn)
+    if (!isClassDeclaration(line) && !isMethodDeclaration(line)) {
+      if (line.includes("{")) {
+        currentNestingLevel++;
+      } else if (line.includes("}")) {
+        currentNestingLevel--;
+        currentNestingLevel = Math.max(currentNestingLevel, 0); // Ensure it's not negative
+      }
+    }
+
+    // Weight Due to Size of Control Structures (Wi)
+    if (isClassDeclaration(line)) {
+      startReprt.metric.nestingLevelStructure = 0;
+      if (line.includes("{")) {
+        inheritance++;
+      }
+      else if (line.includes("}")) {
+        inheritance--;
+        inheritance = Math.max(inheritance, 0);
+      }
+    }
+
+
+
+
+    startReprt.metric.inheritanceLevelStructure = inheritance;
+    startReprt.metric.nestingLevelStructure = currentNestingLevel;
+
+    //WC = wi + wn + wc
+    startReprt.metric.WC = startReprt.metric.inheritanceLevelStructure + startReprt.metric.nestingLevelStructure + startReprt.metric.typeOfControlStructure;
+
+    //complexity = WC * no of tokens
+    if (startReprt.metric.WC == 0) {
+
+      startReprt.metric.complexity = startReprt.metric.WC * tokenArray.tokens.length;
+    }
+    if (startReprt.metric.WC >= 1) {
+      startReprt.metric.complexity = startReprt.metric.WC * tokenArray.tokens.length;
+    }
+
+
+
+    report.push(startReprt);
+
+  }
+
+
+  console.log(report);
+
+  const tokenizeJavaCode = () => {
+    setTokenizing(true);
+    try {
+      const lexer = new Lexer(allTokens);
+      const { tokens } = lexer.tokenize(removeComments);
+      setTokens(tokens);
+    } catch (error) {
+      // Handle parsing errors here
+      console.error("Parsing error:", error.message);
+    } finally {
+      setTokenizing(false);
+    }
+  };
+
+  const clearTokens = () => {
+    setTokens([]);
+  };
+
 
   const renderCodeWithClassHighlight = () => {
     const lines = fileContent.split('\n');
@@ -177,16 +314,55 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><c style={{fontWeight:600}}> Original Code</c></Accordion.Header>
+                <Accordion.Header><c style={{ fontWeight: 600 }}> Original Code</c></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <p style={{ textAlign: 'center' }}>
-                    <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style={{ color: '#164EFC' }}>• </span> For Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style={{ color: '#52F2C7' }}>• </span> While Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style={{ color: 'red' }}>• </span> If-Else{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                    <span style={{ color: 'green' }}>• </span> Comments{' '}
-                  </p>
-                  {renderCodeWithClassHighlight()}
+                  <Tabs
+                    defaultActiveKey="profile"
+                    id="uncontrolled-tab-example"
+                    className="mb-3"
+                  >
+                    <Tab eventKey="home" title="Original Code">
+                      <p style={{ textAlign: 'center' }}>
+                        <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{ color: '#164EFC' }}>• </span> For Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{ color: '#52F2C7' }}>• </span> While Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{ color: 'red' }}>• </span> If-Else{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span style={{ color: 'green' }}>• </span> Comments{' '}
+                      </p>
+                      {renderCodeWithClassHighlight()}
+                    </Tab>
+                    <Tab eventKey="profile" title="Calculate Complexity for Original Code">
+                      <table className="table" style={{ color: 'white' }}>
+                        <thead>
+                          <tr>
+                            <th>Line No</th>
+                            <th>Tokens</th>
+                            <th>Wc</th>
+                            <th>Wi</th>
+                            <th>Wc</th>
+                            <th>Wt</th>
+                            <th >Complexity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {report.map((item, index) => (
+                            <tr key={index}>
+                              <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                              <td>{item.line}</td>
+                              <td style={{ textAlign: 'center' }}>{item.metric.typeOfControlStructure}</td>
+                              <td style={{ textAlign: 'center' }}>{item.metric.nestingLevelStructure}</td>
+                              <td style={{ textAlign: 'center' }}>{item.metric.inheritanceLevelStructure}</td>
+                              <td style={{ textAlign: 'center' }}>{item.metric.WC}</td>
+                              <td style={{ textAlign: 'center' }}>{item.metric.complexity}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </Tab>
+                  </Tabs>
+
+
+
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -195,9 +371,9 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{fontWeight:600}}> Row Software Composition Analysis Metrics</c></b></Accordion.Header>
+                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Row Software Composition Analysis Metrics</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -206,9 +382,9 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{fontWeight:600}}>Identified Classes and Inheritance</c></b></Accordion.Header>
+                <Accordion.Header><b><c style={{ fontWeight: 600 }}>Identified Classes and Inheritance</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Class fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  <Class fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
@@ -217,7 +393,7 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{fontWeight:600}}> Syntax Errors</c></b></Accordion.Header>
+                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Syntax Errors</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
                   <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
@@ -228,9 +404,9 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{fontWeight:600}}> Duplicate Codes</c></b></Accordion.Header>
+                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Duplicate Codes</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  <DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
