@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import SyntaxError from "../components/analysis/SyntaxError";
 import Count from "../components/analysis/Count";
+import DublicateCode from "../components/analysis/dublicateCode";
 
 function UploadCode() {
   const [file, setFile] = useState('');
@@ -207,6 +208,17 @@ function UploadCode() {
                 <Accordion.Header><b><c style={{fontWeight:600}}> Syntax Error</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
                   <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          )}
+          <br />
+          {file && (
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                <Accordion.Header><b><c style={{fontWeight:600}}> Duplicate Codes</c></b></Accordion.Header>
+                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                <DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
               </Accordion.Item>
             </Accordion>
