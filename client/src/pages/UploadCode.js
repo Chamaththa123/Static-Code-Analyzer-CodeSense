@@ -302,8 +302,7 @@ function UploadCode() {
           <input type="file" name="file" onChange={handleFileChange} />
           {file ? (
             <div>
-              <p>File Name: {file.name}</p>
-              <p>Code: This is Code</p>
+              <br/>
               <form onSubmit={saveCode} encType="multipart/form-data">
                 <Button className="submit-btn" type="submit">Save Code</Button>
               </form>
