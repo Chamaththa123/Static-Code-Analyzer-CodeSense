@@ -13,6 +13,7 @@
     "mdb-react-ui-kit": "^6.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
+    "react-chartjs-2": "^5.2.0",
     "react-charts": "^2.0.0-beta.7",
     "react-dom": "^18.2.0",
     "react-helmet": "^6.1.0",

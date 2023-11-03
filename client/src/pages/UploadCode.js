@@ -6,6 +6,7 @@ import Header from '../components/Layout/Header';
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion';
 import SyntaxError from "../components/analysis/SyntaxError";
+import Count from "../components/analysis/Count";
 
 function UploadCode() {
   const [file, setFile] = useState('');
@@ -174,7 +175,7 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b>View Code</b></Accordion.Header>
+                <Accordion.Header><c style={{fontWeight:600}}> Original Code</c></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
                   <p style={{ textAlign: 'center' }}>
                     <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
@@ -192,7 +193,18 @@ function UploadCode() {
           {file && (
             <Accordion defaultActiveKey="0">
               <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b>Syntax Errors</b></Accordion.Header>
+                <Accordion.Header><b><c style={{fontWeight:600}}> Raw Metrics</c></b></Accordion.Header>
+                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          )}
+          <br />
+          {file && (
+            <Accordion defaultActiveKey="0">
+              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                <Accordion.Header><b><c style={{fontWeight:600}}> Syntax Error</c></b></Accordion.Header>
                 <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
                   <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
                 </Accordion.Body>
