@@ -271,11 +271,17 @@ function DublicateCode({ fileContent1 }) {
       className="mb-3"
     >
       <Tab eventKey="home" title="Duplicate Code Lines">
-        {duplicateCode.map((duplicateLine, index) => (
-          <c key={index}>
-            <p>({index+1})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {duplicateLine}</p>
-          </c>
-        ))}
+      {duplicateCode.length > 0 ? (
+    <ul>
+      {duplicateCode.map((duplicateLine, index) => (
+        <li key={index}>
+          <p>({index + 1})&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {duplicateLine}</p>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p>No duplicate code lines found.</p>
+  )}
       </Tab>
       <Tab eventKey="profile" title="Code Without Duplicate Code Lines">
       <Tabs
