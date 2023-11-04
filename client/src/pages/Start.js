@@ -19,7 +19,7 @@ function Start() {
 
             <div className="button-container2">
 
-                <pre><i>CodeSense</i></pre>
+            <span style={{fontWeight:200}}><><i>CodeSense</i></></span>
             </div>
             <div>
                 {!auth?.user ? (
