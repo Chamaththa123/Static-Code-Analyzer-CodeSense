@@ -75,7 +75,7 @@ function Register() {
           <Form.Group className="mb-3" controlId="formGridAddress2">
             <pre><Form.Label>What is your favorite coding language ?</Form.Label>
             <Form.Control
-              placeholder="Enter Favorite Coding Language"
+              placeholder="Enter Answer"
               style={{ fontSize: '13px', padding: '10px' }}
               value={answer}
               onChange={(e) => setAnswer(e.target.value)}

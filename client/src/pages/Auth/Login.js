@@ -75,7 +75,7 @@ function Start() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <span className="password-toggle" onClick={togglePasswordVisibility} style={{float:'right',marginTop:'-10%',color:'gray',marginRight:'3%'}}>
+              <span className="password-toggle" onClick={togglePasswordVisibility} style={{float:'right',marginTop:'-7.5%',color:'gray',marginRight:'3%'}}>
                 {showPassword ? <FiEye /> : <FiEyeOff />}
               </span>
             </div>

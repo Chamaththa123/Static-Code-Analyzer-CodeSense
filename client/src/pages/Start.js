@@ -47,7 +47,7 @@ function Start() {
                             <pre>Upload your Java files, and let's dive into the world of code optimization,
                             <br/>error detection, and complexity analysis. Your journey to cleaner,<br/>more efficient code starts now!</pre>
                         <pre><h3><i>Happy Coding!!!</i></h3></pre>
-                        <pre><Button className="s-button" href='/Upload' style={{ width: '30%' }}>
+                        <pre><Button href='/Upload' style={{ width: '30%', backgroundColor: '#181833' }}>
                                 Start Now
                             </Button></pre>
                         </div>

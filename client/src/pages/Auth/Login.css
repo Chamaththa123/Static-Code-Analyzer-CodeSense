@@ -43,11 +43,11 @@
 .button-container1 {
   position: absolute;
   bottom: 30%;
-  right: 5%;
+  right: -2%;
   transform: translateX(-50%);
   color: #cacaca;
   top: 27%;
-  width: 22%;
+  width: 30%;
 }
 
 .button-container111 {
