@@ -49,7 +49,7 @@ function Start() {
 
       <div className="button-container21">
 
-      <pre><i>CodeSense</i></pre>
+        <pre><i>CodeSense</i></pre>
       </div>
 
       <div className="button-container1">
@@ -70,7 +70,7 @@ function Start() {
           <pre><a onClick={() => {
             navigate("/ForgotPassword");
           }} href="" style={{ textDecoration: 'none' }}>Forgot Password ?</a></pre>
-          <pre><Button variant="primary" type="submit" style={{ width: '100%',backgroundColor:'#181833' }}>
+          <pre><Button variant="primary" type="submit" style={{ width: '100%', backgroundColor: '#181833' }}>
             LogIn
           </Button></pre>
           <br />
