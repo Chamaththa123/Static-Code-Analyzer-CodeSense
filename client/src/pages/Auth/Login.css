@@ -45,7 +45,7 @@
   bottom: 30%;
   right: 5%;
   transform: translateX(-50%);
-  color: white;
+  color: #cacaca;
   top: 27%;
   width: 22%;
 }
@@ -53,10 +53,11 @@
 .button-container111 {
   position: absolute;
   bottom: 30%;
-  right: -4%;
+  right: -2%;
   transform: translateX(-50%);
-  color: white;
-  top: 28%;
+  color: #cacaca;
+  top: 10%;
+  width: 30%;
 }
 
 .button-container21 {
@@ -64,7 +65,17 @@
   top: 13%;
   right: 11%;
   transform: translateX(-50%);
-  color: #ffffff;
+  color: #cacaca;
+  font-weight: 800;
+  font-size: 55px;
+}
+
+.button-container211 {
+  position: absolute;
+  top: 7%;
+  right: 11%;
+  transform: translateX(-50%);
+  color: #cacaca;
   font-weight: 800;
   font-size: 55px;
 }
