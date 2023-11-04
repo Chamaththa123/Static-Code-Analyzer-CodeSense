@@ -53,7 +53,7 @@ function Start() {
       <img src={logo} className='start2' />
 
       <div className="button-container21">
-        <pre><i>CodeSense</i></pre>
+      <span style={{fontWeight:200}}><><i>CodeSense</i></></span>
       </div>
 
       <div className="button-container1">
