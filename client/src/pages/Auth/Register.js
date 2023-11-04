@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/Layout/Layout";
-import Header from "../../components/Layout/Header";
-import Footer from "../../components/Layout/Footer";
+import { useAuth } from "../../context/auth";
+import start from '../../images/start.jpg'
+import logo from '../../images/StaticAnalysis.png'
+import './Login.css'
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
-const Register = () => {
+function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -36,106 +41,73 @@ const Register = () => {
       window.alert("Something Wrong!!")
     }
   };
-
   return (
-    
-      <Layout>
-        <Header/>
-        
-        <center>
-        <div style={{backgroundColor:'white'}}>
-        <hr style={{ marginTop: "-10px" }}></hr>
-          <br></br>
-          <br></br>
+    <div style={{ margin: '0', overflow: 'hidden' }}>
 
-        <div className="form-container " style={{width:'30%'}}>
+
+      <img src={start} className='start' />
+      <img src={logo} className='start2' />
+
+      <div className="button-container21">
+
+        <pre><i>CodeSense</i></pre>
+      </div>
+
+      <div className="button-container111">
+
+        <Form onSubmit={handleSubmit}>
+          <center><pre><h3>Register</h3></pre></center>
+          <Row>
+        <Col>
+        <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Label>Address 2</Form.Label>
+        <Form.Control placeholder="Apartment, studio, or floor" />
+      </Form.Group>
+        </Col>
+        <Col>
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" />
+        </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Label>Address 2</Form.Label>
+        <Form.Control placeholder="Apartment, studio, or floor" />
+      </Form.Group>
+        </Col>
+        <Col>
+        <Form.Group className="mb-3" controlId="formGridAddress2">
+        <Form.Label>Address 2</Form.Label>
+        <Form.Control placeholder="Apartment, studio, or floor" />
+      </Form.Group>
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        </Col>
+        <Col>
+        <Form.Group as={Col} controlId="formGridPassword">
+          <Form.Label>Password</Form.Label>
+          <Form.Control type="password" placeholder="Password" />
+        </Form.Group>
+        </Col>
+      </Row>
+      <br/>
+          <pre><Button variant="primary" type="submit" style={{ width: '100%', backgroundColor: '#181833' }}>
+            LogIn
+          </Button></pre>
           
-        <form onSubmit={handleSubmit}>
-          <h4 className="title">REGISTER FORM</h4>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Name"
-              required
-              autoFocus
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Email "
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="form-control"
-              id="exampleInputPassword1"
-              placeholder="Enter Your Password"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Phone"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={address}
-              onChange={(e) => setAddress(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="Enter Your Address"
-              required
-            />
-          </div>
-          <div className="mb-3">
-            <input
-              type="text"
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-              className="form-control"
-              id="exampleInputEmail1"
-              placeholder="What is Your Favorite sports"
-              required
-            />
-          </div>
-          <button type="submit" className="btn btn-primary" style={{width:'100%'}}>
-            REGISTER
-          </button>
-        </form>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-
+        </Form>
       </div>
-      </div>
-        </center>
-        
-      <Footer/>
-      </Layout>
-    
-  );
-};
+    </div>
+  )
+}
 
-export default Register;
+export default Register

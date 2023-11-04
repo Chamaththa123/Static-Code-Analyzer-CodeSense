@@ -50,6 +50,15 @@
   width: 22%;
 }
 
+.button-container111 {
+  position: absolute;
+  bottom: 30%;
+  right: -4%;
+  transform: translateX(-50%);
+  color: white;
+  top: 28%;
+}
+
 .button-container21 {
   position: absolute;
   top: 13%;
