@@ -31,7 +31,7 @@ function Start() {
           token: res.data.token,
         });
         localStorage.setItem("auth", JSON.stringify(res.data));
-        navigate("/Register");
+        navigate("/Upload");
       } else {
         window.alert(res.data.message)
       }
@@ -47,12 +47,12 @@ function Start() {
       <img src={start} className='start' />
       <img src={logo} className='start2' />
 
-      <div className="button-container2">
+      <div className="button-container21">
 
-        <pre> Static Code Analysis</pre>
+      <pre><i>CodeSense</i></pre>
       </div>
 
-      <div className="button-container">
+      <div className="button-container1">
 
         <Form onSubmit={handleSubmit}>
           <center><pre><h3>LogIn</h3></pre></center>
@@ -70,13 +70,13 @@ function Start() {
           <pre><a onClick={() => {
             navigate("/ForgotPassword");
           }} href="" style={{ textDecoration: 'none' }}>Forgot Password ?</a></pre>
-          <pre><Button variant="primary" type="submit" style={{ width: '100%' }}>
+          <pre><Button variant="primary" type="submit" style={{ width: '100%',backgroundColor:'#181833' }}>
             LogIn
           </Button></pre>
           <br />
           <br />
           <center><pre>Need an account? <a onClick={() => {
-            navigate("/ForgotPassword");
+            navigate("/Register");
           }} href="" style={{ textDecoration: 'none' }}>Register</a></pre></center>
         </Form>
       </div>

@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
 
-
-
 .App {
   background-color: #0e0e1f;
   color: white;
@@ -40,22 +38,36 @@
   max-height: 60%;
 }
 
-.button-container1 {
+.button-container {
   position: absolute;
   bottom: 30%;
-  right: 5%;
+  right: -5%;
   transform: translateX(-50%);
   color: white;
-  top: 27%;
-  width: 22%;
+  top: 37%;
+  width: 30%;
 }
 
-.button-container21 {
+.button-container11 {
+    position: absolute;
+    bottom: 30%;
+    right: -25%;
+    transform: translateX(-50%);
+    color: white;
+    top: 47%;
+    width: 50%;
+  }
+
+.button-container2 {
   position: absolute;
   top: 13%;
-  right: 11%;
+  right: 10%;
   transform: translateX(-50%);
-  color: #ffffff;
+  color: #cacaca;
   font-weight: 800;
   font-size: 55px;
+}
+
+.s-button{
+    background-color: #181833;
 }
