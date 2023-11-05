@@ -6,7 +6,6 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import cors from "cors";
 import bodyParser from "body-parser";
-import trafficRoutes from "./routes/trafficRoute.js";
 
 //configure env
 dotenv.config();
@@ -24,7 +23,6 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.use("/api/v1/auth", authRoutes);
-app.use(trafficRoutes);
 
 //rest api
 app.get("/", (req, res) => {
