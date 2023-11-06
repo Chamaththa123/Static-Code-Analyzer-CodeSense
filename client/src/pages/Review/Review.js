@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 import Sidebar from '../../components/Layout/Sidebar'
 import Header from '../../components/Layout/Header'
 import logo from '../../images/StaticAnalysis.png'
@@ -12,6 +13,8 @@ import { FaStar } from "react-icons/fa";
 import ProgressBar from "react-bootstrap/ProgressBar";
 import Button from 'react-bootstrap/Button';
 import Rating from '@mui/material/Rating';
+import { useAuth } from "../../context/auth";
+
 const colors = {
     orange: "#FEB902",
     grey: "#D4D1D0",
@@ -20,6 +23,44 @@ const colors = {
 function Review() {
 
     const stars = Array(5).fill(0);
+
+    const [inputs, setInput] = useState({});
+    const [auth, setAuth] = useAuth();
+    const current = new Date();
+    const date = `${current.getDate()}/${current.getMonth() + 1
+        }/${current.getFullYear()}`;
+    const name = auth?.user?.name;
+
+    const [inpval, setINP] = useState({
+        rating: "",
+        comment: ""
+    });
+    console.log(inpval);
+
+    const setdata = (e) => {
+        setINP((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }));
+    };
+
+    const sendRequest = async () => {
+        await axios
+            .post(`http://localhost:8000/review/add`, {
+                name: String(name),
+                rating: Number(inpval.rating),
+                comment: String(inpval.comment),
+                date: String(date),
+
+            })
+            .then((res) => res.data);
+    };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(inpval);
+        sendRequest();
+
+    };
     return (
         <div>
             <Sidebar />
@@ -41,17 +82,25 @@ function Review() {
                                             <span style={{ fontSize: '13px' }}>Leave a rating or review for the community.</span>
                                         </Col>
                                         <Col>
-                                        <Rating name="half-rating" defaultValue={0} precision={1} style={{borderColor:'white'}}/>
-                                            <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here" style={{ color: 'black', fontSize: '14px' }}>
-                                                <Form.Control
-                                                    as="textarea"
-                                                    style={{ height: '70px' }}
-                                                />
-                                            </FloatingLabel>
-                                            <br/>
-                                            <Button variant="primary" type="submit">
-                                                write Review
-                                            </Button>
+                                            <Form onSubmit={handleSubmit}>
+                                                <Rating name="half-rating" defaultValue={0} precision={1}
+                                                    name="rating"
+                                                    value={inpval.rating}
+                                                    onChange={setdata} />
+                                                <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here" style={{ color: 'black', fontSize: '14px' }}>
+                                                    <Form.Control
+                                                        as="textarea"
+                                                        style={{ height: '70px' }}
+                                                        name="comment"
+                                                        value={inpval.comment}
+                                                        onChange={setdata}
+                                                    />
+                                                </FloatingLabel>
+                                                <br />
+                                                <Button variant="primary" type="submit">
+                                                    write Review
+                                                </Button>
+                                            </Form>
                                         </Col>
                                     </Row>
                                 </Card.Body>

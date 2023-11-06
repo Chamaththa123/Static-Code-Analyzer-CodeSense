@@ -29,9 +29,9 @@ router.post('/review/add', async (req, res) => {
 
 
 
-router.route("/Allcontact").get((req, res) => {
-    Contact.find().then((contact) => {
-        res.json(contact)
+router.route("/AllReview").get((req, res) => {
+    Review.find().then((review) => {
+        res.json(review)
     }).catch((err) => {
         console.log(err);
     })
