@@ -6,10 +6,12 @@ import './Review.css'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
+import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Row from 'react-bootstrap/Row';
 import { FaStar } from "react-icons/fa";
 import ProgressBar from "react-bootstrap/ProgressBar";
-
+import Button from 'react-bootstrap/Button';
+import Rating from '@mui/material/Rating';
 const colors = {
     orange: "#FEB902",
     grey: "#D4D1D0",
@@ -39,6 +41,17 @@ function Review() {
                                             <span style={{ fontSize: '13px' }}>Leave a rating or review for the community.</span>
                                         </Col>
                                         <Col>
+                                        <Rating name="half-rating" defaultValue={0} precision={1} style={{borderColor:'white'}}/>
+                                            <FloatingLabel controlId="floatingTextarea2" label="Leave a comment here" style={{ color: 'black', fontSize: '14px' }}>
+                                                <Form.Control
+                                                    as="textarea"
+                                                    style={{ height: '70px' }}
+                                                />
+                                            </FloatingLabel>
+                                            <br/>
+                                            <Button variant="primary" type="submit">
+                                                write Review
+                                            </Button>
                                         </Col>
                                     </Row>
                                 </Card.Body>
@@ -71,7 +84,7 @@ function Review() {
                                                                         }
                                                                     />
                                                                 );
-                                                            })}<br/>
+                                                            })}<br />
                                                             {stars.map((_, index) => {
                                                                 return (
                                                                     <FaStar
@@ -83,7 +96,7 @@ function Review() {
                                                                         }
                                                                     />
                                                                 );
-                                                            })}<br/>
+                                                            })}<br />
                                                             {stars.map((_, index) => {
                                                                 return (
                                                                     <FaStar
@@ -95,7 +108,7 @@ function Review() {
                                                                         }
                                                                     />
                                                                 );
-                                                            })}<br/>
+                                                            })}<br />
                                                             {stars.map((_, index) => {
                                                                 return (
                                                                     <FaStar
@@ -107,7 +120,7 @@ function Review() {
                                                                         }
                                                                     />
                                                                 );
-                                                            })}<br/>
+                                                            })}<br />
                                                             {stars.map((_, index) => {
                                                                 return (
                                                                     <FaStar
