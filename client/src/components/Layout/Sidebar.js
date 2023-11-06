@@ -12,6 +12,7 @@ function Sidebar() {
         <br/>
   <a href="/Upload">Analyse Code</a>
   <a href="#services">WCC Metrice</a>
+  <a href="/RateUs">Rate Us</a>
 </div>
     </div>
   )
