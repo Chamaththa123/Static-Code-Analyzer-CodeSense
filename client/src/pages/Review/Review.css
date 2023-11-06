@@ -1,26 +1,27 @@
-.name{
+.name {
     font-weight: 200;
     float: left;
 }
 
-.name2{
+.name2 {
     font-weight: 200;
     float: left;
 }
 
-.head{
+.head {
     margin-top: -90px;
     margin-left: 150px;
 }
-.head2{
+
+.head2 {
     margin-top: -55px;
     margin-left: 80px;
 }
 
-.review1{
+.review1 {
     margin: 10%;
 }
 
-.review2{
+.review2 {
     margin-top: 5%;
 }

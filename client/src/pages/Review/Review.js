@@ -80,6 +80,110 @@ function Review() {
                 alert(err.message);
             });
     };
+
+    const [countRating, setreviewcountRating] = useState([]);
+    useEffect(() => {
+        getCountRating();
+    });
+
+    const getCountRating = () => {
+        axios
+            .get(`http://localhost:8000/ReviewCount`)
+            .then((res) => {
+                setreviewcountRating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const [count5Rating, setreviewcount5Rating] = useState([]);
+    useEffect(() => {
+        getCount5Rating();
+    });
+
+    const getCount5Rating = () => {
+        axios
+            .get(`http://localhost:8000/5reviewscount`)
+            .then((res) => {
+                setreviewcount5Rating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const [count4Rating, setreviewcount4Rating] = useState([]);
+    useEffect(() => {
+        getCount4Rating();
+    });
+
+    const getCount4Rating = () => {
+        axios
+            .get(`http://localhost:8000/4reviewscount`)
+            .then((res) => {
+                setreviewcount4Rating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const [count3Rating, setreviewcount3Rating] = useState([]);
+    useEffect(() => {
+        getCount3Rating();
+    });
+
+    const getCount3Rating = () => {
+        axios
+            .get(`http://localhost:8000/3reviewscount`)
+            .then((res) => {
+                setreviewcount3Rating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const [count2Rating, setreviewcount2Rating] = useState([]);
+    useEffect(() => {
+        getCount2Rating();
+    });
+
+    const getCount2Rating = () => {
+        axios
+            .get(`http://localhost:8000/2reviewscount`)
+            .then((res) => {
+                setreviewcount2Rating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const [count1Rating, setreviewcount1Rating] = useState([]);
+    useEffect(() => {
+        getCount1Rating();
+    });
+
+    const getCount1Rating = () => {
+        axios
+            .get(`http://localhost:8000/1reviewscount`)
+            .then((res) => {
+                setreviewcount1Rating(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
+    };
+
+    const calculateAverageRating = () => {
+        if (countRating > 0) {
+            return ((count5Rating * 5 + count4Rating * 4 + count3Rating * 3 + count2Rating * 2 + count1Rating * 1) / countRating).toFixed(1);
+        } else {
+            return 0;
+        }
+    };
     return (
         <div>
             <Sidebar />
@@ -116,7 +220,7 @@ function Review() {
                                                     />
                                                 </FloatingLabel>
                                                 <br />
-                                                <Button variant="primary" type="submit">
+                                                <Button style={{ backgroundColor: '#181833' }} type="submit">
                                                     write Review
                                                 </Button>
                                             </Form>
@@ -127,15 +231,17 @@ function Review() {
                         </div>
                         <div>
                             <h4>What do people think of <i>CodeSense</i> ?</h4>
-                            <span>The community submitted <span style={{ color: '#FFC300' }}>541 reviews</span> to tell us what they like about <i>CodeSense</i>, what <i>CodeSense</i> can do better, and more.</span>
+                            <span>The community submitted <span style={{ color: '#FFC300' }}>{countRating} reviews</span> to tell us what they like about <i>CodeSense</i>, what <i>CodeSense</i> can do better, and more.</span>
 
                             <div className='review2'>
                                 <Card style={{ borderColor: 'white' }}>
                                     <Card.Body>
                                         <Row>
                                             <Col>
-                                                <span style={{ fontSize: '16px' }}>What do you think about <i>CodeSense</i> ?</span><br />
-                                                <span style={{ fontSize: '13px' }}>Leave a rating or review for the community.</span>
+                                                <br />
+                                                <br />
+                                                <span style={{ fontSize: '26px', fontWeight: 'bolder', margin: '60px' }}>{calculateAverageRating()}/5</span><span style={{ marginLeft: "-40px" }}>({countRating} Reviews)</span><br />
+
                                             </Col>
                                             <Col>
                                                 <div style={styles.stars}>
@@ -203,11 +309,21 @@ function Review() {
                                                             })}
                                                         </Col>
                                                         <Col>
-                                                            <ProgressBar now={60} style={{ width: '200px', height: '10px', marginTop: '9px' }} variant="warning" />
-                                                            <ProgressBar now={60} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
-                                                            <ProgressBar now={60} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
-                                                            <ProgressBar now={60} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
-                                                            <ProgressBar now={60} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
+                                                            <ProgressBar now={((count5Rating / countRating) * 100)?.toFixed(
+                                                                0
+                                                            )} style={{ width: '200px', height: '10px', marginTop: '9px' }} variant="warning" />
+                                                            <ProgressBar now={((count4Rating / countRating) * 100)?.toFixed(
+                                                                0
+                                                            )} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
+                                                            <ProgressBar now={((count3Rating / countRating) * 100)?.toFixed(
+                                                                0
+                                                            )} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
+                                                            <ProgressBar now={((count2Rating / countRating) * 100)?.toFixed(
+                                                                0
+                                                            )} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
+                                                            <ProgressBar now={((count1Rating / countRating) * 100)?.toFixed(
+                                                                0
+                                                            )} style={{ width: '200px', height: '10px', marginTop: '12px' }} variant="warning" />
                                                         </Col>
                                                     </Row>
 
@@ -233,8 +349,8 @@ function Review() {
                                                         readOnly
                                                     /></p>
                                                 </div>
-                                                <span><i>{review.comment}</i></span><br/>
-                                                <span style={{fontSize:'12px'}}><i>{review.date}</i></span>
+                                                <span><i>{review.comment}</i></span><br />
+                                                <span style={{ fontSize: '12px' }}><i>{review.date}</i></span>
                                             </Card>
                                             <br />
                                         </div>
