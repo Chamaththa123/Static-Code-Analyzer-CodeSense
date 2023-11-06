@@ -3,6 +3,7 @@ import axios from "axios";
 import Sidebar from '../../components/Layout/Sidebar'
 import Header from '../../components/Layout/Header'
 import logo from '../../images/StaticAnalysis.png'
+import user from '../../images/user.png'
 import './Review.css'
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -60,6 +61,24 @@ function Review() {
         console.log(inpval);
         sendRequest();
 
+    };
+
+    const [review, setreview] = useState([]);
+    console.log(review);
+
+    useEffect(() => {
+        getReviews();
+    });
+
+    const getReviews = () => {
+        axios
+            .get(`http://localhost:8000/AllReview`)
+            .then((res) => {
+                setreview(res.data);
+            })
+            .catch((err) => {
+                alert(err.message);
+            });
     };
     return (
         <div>
@@ -198,11 +217,36 @@ function Review() {
                                     </Card.Body>
                                 </Card>
                             </div>
+                            <div className="review1">
+                                {review.map((review, id) => {
+                                    return (
+                                        <div>
+                                            <Card style={{ borderRadius: '10px', borderColor: 'white' }}>
+                                                <img src={user} alt='logo' style={{ width: '8%' }} />
+                                                <div className='head2'>
+                                                    <h5><span className='name2'><><i>{review.name}</i></></span></h5><br /><br />
+                                                    <p style={{ fontSize: '12px', marginTop: '-15px' }}><Rating
+                                                        style={{ fontSize: "17px" }}
+                                                        name="half-rating-read"
+                                                        defaultValue={review.rating}
+                                                        precision={0.5}
+                                                        readOnly
+                                                    /></p>
+                                                </div>
+                                                <span><i>{review.comment}</i></span><br/>
+                                                <span style={{fontSize:'12px'}}><i>{review.date}</i></span>
+                                            </Card>
+                                            <br />
+                                        </div>
+
+                                    );
+                                })}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

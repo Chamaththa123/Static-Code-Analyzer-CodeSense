@@ -3,9 +3,18 @@
     float: left;
 }
 
+.name2{
+    font-weight: 200;
+    float: left;
+}
+
 .head{
     margin-top: -90px;
     margin-left: 150px;
+}
+.head2{
+    margin-top: -55px;
+    margin-left: 80px;
 }
 
 .review1{

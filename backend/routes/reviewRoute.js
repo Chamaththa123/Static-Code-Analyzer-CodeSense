@@ -27,8 +27,6 @@ router.post('/review/add', async (req, res) => {
 
 });
 
-
-
 router.route("/AllReview").get((req, res) => {
     Review.find().then((review) => {
         res.json(review)
