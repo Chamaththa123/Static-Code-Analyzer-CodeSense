@@ -6,63 +6,63 @@ import path from "path";
 const router = express.Router();
 
 const codeStorage = multer.diskStorage({
-  destination: (req, file, callback) => {
-    callback(null, "../client/public/uploads");
-  },
-  filename: (req, file, callback) => {
-    callback(null, `code-${Date.now()}.${path.extname(file.originalname)}`);
-  },
+    destination: (req, file, callback) => {
+        callback(null, "../client/public/uploads");
+    },
+    filename: (req, file, callback) => {
+        callback(null, `code-${Date.now()}.${path.extname(file.originalname)}`);
+    },
 });
 
 const isJavaFile = (req, file, callback) => {
-  if (path.extname(file.originalname).toLowerCase() === ".java") {
-    callback(null, true);
-  } else {
-    callback(new Error("Only Java files (.java) are allowed"));
-  }
+    if (path.extname(file.originalname).toLowerCase() === ".java") {
+        callback(null, true);
+    } else {
+        callback(new Error("Only Java files (.java) are allowed"));
+    }
 };
 
 const upload = multer({
-  storage: codeStorage,
-  fileFilter: isJavaFile,
+    storage: codeStorage,
+    fileFilter: isJavaFile,
 });
 
 router.post('/file/save', upload.single("file"), (req, res) => {
-  const userId = req.body.userId;
-  const file = req.file ? req.file.filename : '';
+    const userId = req.body.userId;
+    const file = req.file ? req.file.filename : '';
 
-  if (!file) {
-    return res.status(400).json({
-      error: 'No file uploaded',
-    });
-  }
-
-  const newCode = new Code({
-    userId,
-    file,
-  });
-
-  newCode.save((err) => {
-    if (err) {
-      return res.status(400).json({
-        error: err.message,
-      });
+    if (!file) {
+        return res.status(400).json({
+            error: 'No file uploaded',
+        });
     }
-    return res.status(200).json({
-      success: "File saved successfully",
+
+    const newCode = new Code({
+        userId,
+        file,
     });
-  });
+
+    newCode.save((err) => {
+        if (err) {
+            return res.status(400).json({
+                error: err.message,
+            });
+        }
+        return res.status(200).json({
+            success: "File saved successfully",
+        });
+    });
 });
 
 router.route("/get/file").get((req, res) => {
-  Code.find()
-    .then((codes) => {
-      res.json(codes);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({ error: "Internal Server Error" });
-    });
+    Code.find()
+        .then((codes) => {
+            res.json(codes);
+        })
+        .catch((err) => {
+            console.log(err);
+            res.status(500).json({ error: "Internal Server Error" });
+        });
 });
 
 export default router;
