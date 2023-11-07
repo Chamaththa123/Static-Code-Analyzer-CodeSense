@@ -68,4 +68,12 @@ router.get('/user/codes', requireSignIn, (req, res) => {
         });
 });
 
+router.route("/code").get((req,res) => {
+    Code.find().then((codes) => {
+        res.json(codes)
+    }).catch((err) => {
+        console.log(err);
+    })
+  })
+
 export default router;

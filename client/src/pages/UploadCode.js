@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+import React from "react";
+import { useState, useEffect } from "react";
 import Sidebar from '../components/Layout/Sidebar';
 import './CodeUpload.css';
 import Header from '../components/Layout/Header';
@@ -15,12 +16,13 @@ import { parse } from "java-parser";
 import { isBranchStatement, isIterationStatement, isSwitchStatement, isClassDeclaration, countCases } from "../components/analysis/codeAnalysis";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
+import { useAuth } from "../context/auth";
 
 function UploadCode() {
   const [file, setFile] = useState('');
   const [fileContent, setFileContent] = useState('');
   const [fileExtension, setFileExtension] = useState(null);
-  const [date, setDate] = useState('');
+  const [userId, setuserId] = useState('');
   const [fileName, setFileName] = useState("");
   const [error, setError] = useState('');
 
@@ -48,34 +50,34 @@ function UploadCode() {
   const getFileExtension = filename => {
     return filename.slice(((filename.lastIndexOf(".") - 1) >>> 0) + 2);
   };
+
+  const [auth, setAuth] = useAuth();
+
+
   const saveCode = async (e) => {
     e.preventDefault();
+    const userId = auth?.user?._id;
 
     if (!file || !fileContent) {
       setError("Please select a file to upload.");
       return;
     }
 
-    const code = {
-      codeName: file.name,
-      codeData: fileContent,
-    };
+    const formData = new FormData();
+    formData.append('userId', userId);
+    formData.append('file', fileName);
 
-    try {
-      const response = await axios.post("/users/addcode", code, {
-        headers: {
-          "Content-Type": "application/json",
-        },
+    setuserId('');
+    setFileName('');
+
+    axios
+      .post('http://localhost:8000/file/save', formData)
+      .then((res) =>
+        window.alert('Item Add is Successfully')
+      )
+      .catch((err) => {
+        setError(err.response.data.error);
       });
-
-      if (response.status === 200) {
-        console.log("Success:", response.data);
-      } else {
-        console.log("Error:", response.data);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
   };
 
   let nestingLevel = 0;
@@ -299,139 +301,141 @@ function UploadCode() {
         <Header />
         <div className='content'>
           <h3>Upload Code File</h3>
-          <input type="file" name="file" onChange={handleFileChange} />
-          {file ? (
-            <div>
-              <br/>
-              <form onSubmit={saveCode} encType="multipart/form-data">
-                <Button className="submit-btn" type="submit">Save Code</Button>
-              </form>
-            </div>
-          ) : (
-            
-            <div>
-              <br /><br />
-              <center><h2>Welcome to <span style={{fontWeight:200}}><><i>CodeSense</i></></span></h2></center>
-              <p>Are you a Java developer looking to improve your code quality, optimize performance, and enhance your software's maintainability? </p>
-              <p><i>Look no further!</i> Our Code Analyzer for Java is your go-to tool for assessing and improving your Java codebase. This web app provides a comprehensive suite of features to make your coding experience better and more efficient.</p>
-            <h5>How to Use:</h5>
-<ul>
-  <li><b>Upload Your Java Code: </b> Click on the "Upload Code" button, select your Java file, and upload it. You'll instantly see your original code content.</li>
-<li><b>Analyze Complexity: </b>Click the "Analyze Complexity" button to assess your code's complexity. Understand where improvements are needed to enhance performance and maintainability.</li>
-<li><b>View Software Composition Metrics:</b>Explore software composition metrics to visualize your code's structure, class dependencies, and more.</li>
-<li><b>Identify Syntax Errors: </b>Check for syntax errors in your code by clicking the "Check Syntax" button. We'll highlight any issues for you to address.</li>
-<li><b>Detect Duplicated Code: </b>The "Detect Duplicates" feature will identify and display duplicated code segments, making it easy for you to refactor your codebase.</li>
-<li><b>Recalculate Complexity: </b>After resolving duplicated code, use the "Recalculate Complexity" button to reassess your code's complexity without the redundancy.</li>
-</ul>
-<p>Start using our Code Analyzer for Java today to optimize your code, improve its quality, and streamline your development process. Whether you're a seasoned Java developer or
-   just getting started, our web app is here to support you in your coding journey.</p>
-   <p><i>Make your Java code cleaner, more efficient, and error-free with the Code Analyzer for Java. Happy coding!</i></p>
-            </div>
-          )}
+          <form onSubmit={saveCode} encType="multipart/form-data">
+            <input type="file" name="file" onChange={handleFileChange} />
+            {file ? (
+              <div>
+                <br />
+                
+                  <Button className="submit-btn" type="submit">Save Code</Button>
+                
+              </div>
+            ) : (
 
-          {error && <p style={{ color: 'red' }}>{error}</p>}
+              <div>
+                <br /><br />
+                <center><h2>Welcome to <span style={{ fontWeight: 200 }}><><i>CodeSense</i></></span></h2></center>
+                <p>Are you a Java developer looking to improve your code quality, optimize performance, and enhance your software's maintainability? </p>
+                <p><i>Look no further!</i> Our Code Analyzer for Java is your go-to tool for assessing and improving your Java codebase. This web app provides a comprehensive suite of features to make your coding experience better and more efficient.</p>
+                <h5>How to Use:</h5>
+                <ul>
+                  <li><b>Upload Your Java Code: </b> Click on the "Upload Code" button, select your Java file, and upload it. You'll instantly see your original code content.</li>
+                  <li><b>Analyze Complexity: </b>Click the "Analyze Complexity" button to assess your code's complexity. Understand where improvements are needed to enhance performance and maintainability.</li>
+                  <li><b>View Software Composition Metrics:</b>Explore software composition metrics to visualize your code's structure, class dependencies, and more.</li>
+                  <li><b>Identify Syntax Errors: </b>Check for syntax errors in your code by clicking the "Check Syntax" button. We'll highlight any issues for you to address.</li>
+                  <li><b>Detect Duplicated Code: </b>The "Detect Duplicates" feature will identify and display duplicated code segments, making it easy for you to refactor your codebase.</li>
+                  <li><b>Recalculate Complexity: </b>After resolving duplicated code, use the "Recalculate Complexity" button to reassess your code's complexity without the redundancy.</li>
+                </ul>
+                <p>Start using our Code Analyzer for Java today to optimize your code, improve its quality, and streamline your development process. Whether you're a seasoned Java developer or
+                  just getting started, our web app is here to support you in your coding journey.</p>
+                <p><i>Make your Java code cleaner, more efficient, and error-free with the Code Analyzer for Java. Happy coding!</i></p>
+              </div>
+            )}
 
-          <br /><br /><br />
-          {file && (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><c style={{ fontWeight: 600 }}> Original Code</c></Accordion.Header>
-                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <Tabs
-                    defaultActiveKey="profile"
-                    id="uncontrolled-tab-example"
-                    className="mb-3"
-                  >
-                    <Tab eventKey="profile" title="Original Code">
-                      <p style={{ textAlign: 'center' }}>
-                        <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style={{ color: '#164EFC' }}>• </span> For Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style={{ color: '#52F2C7' }}>• </span> While Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style={{ color: 'red' }}>• </span> If-Else{' '}&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span style={{ color: 'green' }}>• </span> Comments{' '}
-                      </p>
-                      {renderCodeWithClassHighlight()}
-                    </Tab>
-                    <Tab eventKey="home" title="Calculate Complexity for Original Code">
-                      <table className="table" style={{ color: 'white' }}>
-                        <thead>
-                          <tr>
-                            <th>Line No</th>
-                            <th>Tokens</th>
-                            <th>Wc</th>
-                            <th>Wi</th>
-                            <th>Wc</th>
-                            <th>Wt</th>
-                            <th >Complexity</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {report.map((item, index) => (
-                            <tr key={index}>
-                              <td style={{ textAlign: 'center' }}>{index + 1}</td>
-                              <td>{item.line}</td>
-                              <td style={{ textAlign: 'center' }}>{item.metric.typeOfControlStructure}</td>
-                              <td style={{ textAlign: 'center' }}>{item.metric.nestingLevelStructure}</td>
-                              <td style={{ textAlign: 'center' }}>{item.metric.inheritanceLevelStructure}</td>
-                              <td style={{ textAlign: 'center' }}>{item.metric.WC}</td>
-                              <td style={{ textAlign: 'center' }}>{item.metric.complexity}</td>
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+
+            <br /><br /><br />
+            {file && (
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                  <Accordion.Header><c style={{ fontWeight: 600 }}> Original Code</c></Accordion.Header>
+                  <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                    <Tabs
+                      defaultActiveKey="profile"
+                      id="uncontrolled-tab-example"
+                      className="mb-3"
+                    >
+                      <Tab eventKey="profile" title="Original Code">
+                        <p style={{ textAlign: 'center' }}>
+                          <span style={{ color: 'orange' }}>• </span> Classes {' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style={{ color: '#164EFC' }}>• </span> For Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style={{ color: '#52F2C7' }}>• </span> While Loop{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style={{ color: 'red' }}>• </span> If-Else{' '}&nbsp;&nbsp;&nbsp;&nbsp;
+                          <span style={{ color: 'green' }}>• </span> Comments{' '}
+                        </p>
+                        {renderCodeWithClassHighlight()}
+                      </Tab>
+                      <Tab eventKey="home" title="Calculate Complexity for Original Code">
+                        <table className="table" style={{ color: 'white' }}>
+                          <thead>
+                            <tr>
+                              <th>Line No</th>
+                              <th>Tokens</th>
+                              <th>Wc</th>
+                              <th>Wi</th>
+                              <th>Wc</th>
+                              <th>Wt</th>
+                              <th >Complexity</th>
                             </tr>
-                          ))}
-                        </tbody>
-                      </table>
-                    </Tab>
-                  </Tabs>
+                          </thead>
+                          <tbody>
+                            {report.map((item, index) => (
+                              <tr key={index}>
+                                <td style={{ textAlign: 'center' }}>{index + 1}</td>
+                                <td>{item.line}</td>
+                                <td style={{ textAlign: 'center' }}>{item.metric.typeOfControlStructure}</td>
+                                <td style={{ textAlign: 'center' }}>{item.metric.nestingLevelStructure}</td>
+                                <td style={{ textAlign: 'center' }}>{item.metric.inheritanceLevelStructure}</td>
+                                <td style={{ textAlign: 'center' }}>{item.metric.WC}</td>
+                                <td style={{ textAlign: 'center' }}>{item.metric.complexity}</td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </Tab>
+                    </Tabs>
 
 
 
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          )}
-          <br />
-          {file && (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Row Software Composition Analysis Metrics</c></b></Accordion.Header>
-                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          )}
-          <br />
-          {file && (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{ fontWeight: 600 }}>Identified Classes and Inheritance</c></b></Accordion.Header>
-                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <Class fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          )}
-          <br />
-          {file && (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Syntax Errors</c></b></Accordion.Header>
-                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          )}
-          <br />
-          {file && (
-            <Accordion defaultActiveKey="0">
-              <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                <Accordion.Header><b><c style={{ fontWeight: 600 }}> Duplicate Codes</c></b></Accordion.Header>
-                <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
-                  <DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
-                </Accordion.Body>
-              </Accordion.Item>
-            </Accordion>
-          )}
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            )}
+            <br />
+            {file && (
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                  <Accordion.Header><b><c style={{ fontWeight: 600 }}> Row Software Composition Analysis Metrics</c></b></Accordion.Header>
+                  <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                    <Count fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            )}
+            <br />
+            {file && (
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                  <Accordion.Header><b><c style={{ fontWeight: 600 }}>Identified Classes and Inheritance</c></b></Accordion.Header>
+                  <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                    <Class fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            )}
+            <br />
+            {file && (
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                  <Accordion.Header><b><c style={{ fontWeight: 600 }}> Syntax Errors</c></b></Accordion.Header>
+                  <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                    <SyntaxError fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            )}
+            <br />
+            {file && (
+              <Accordion defaultActiveKey="0">
+                <Accordion.Item eventKey="0" style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                  <Accordion.Header><b><c style={{ fontWeight: 600 }}> Duplicate Codes</c></b></Accordion.Header>
+                  <Accordion.Body style={{ backgroundColor: '#0e0e1f', color: 'white', borderRadius: '10px' }}>
+                    <DublicateCode fileExtension1={fileExtension} fileContent1={fileContent} file={fileName} />
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            )}
+            </form>
         </div>
       </div>
     </div>

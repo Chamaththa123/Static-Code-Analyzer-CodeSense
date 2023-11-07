@@ -1,38 +1,53 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function UserUploadedFiles() {
     const [userFiles, setUserFiles] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Fetch the user's uploaded files from the backend
-        fetch('/api/user/codes', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('token')}`, // Replace with your actual token retrieval
-            },
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                setUserFiles(data);
-            })
-            .catch((error) => {
-                console.error('Error fetching user files:', error);
-            });
+        getCode();
     }, []);
+
+    const getCode = () => {
+        axios
+            .get(`http://localhost:8000/code`)
+            .then((res) => {
+                setUserFiles(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                alert(err.message);
+                setLoading(false);
+            });
+    };
 
     return (
         <div>
             <h2>Uploaded Files</h2>
-            {userFiles.length === 0 ? (
-                <p>No files uploaded yet.</p>
+            {loading ? (
+                <p>Loading files...</p>
             ) : (
                 <ul>
-                    {userFiles.map((file) => (
-                        <li key={file._id}>
-                            {/* Display file information, you can customize this part */}
-                            <div>File Name: {file.file}</div>
-                        </li>
-                    ))}
+                    {userFiles.length === 0 ? (
+                        <p>No files uploaded yet.</p>
+                    ) : (
+                        userFiles.map((file) => (
+                            <li key={file._id}>
+                                <div>
+                                    <strong>File Name:</strong> {file.file}
+                                </div>
+                                <div>
+                                    <strong>Uploaded At:</strong> {new Date(file.createdAt).toLocaleString()}
+                                </div>
+                                <div>
+                                    <a href={`http://localhost:8000/uploads/${file.file}`} target="_blank" rel="noreferrer">
+                                        Download
+                                    </a>
+                                </div>
+                            </li>
+                        ))
+                    )}
                 </ul>
             )}
         </div>
