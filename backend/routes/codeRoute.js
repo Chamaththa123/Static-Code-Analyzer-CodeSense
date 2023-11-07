@@ -27,7 +27,7 @@ const upload = multer({
   fileFilter: isJavaFile,
 });
 
-router.post('/code/save', upload.single("file"), (req, res) => {
+router.post('/file/save', upload.single("file"), (req, res) => {
   const userId = req.body.userId;
   const file = req.file ? req.file.filename : '';
 
@@ -54,7 +54,7 @@ router.post('/code/save', upload.single("file"), (req, res) => {
   });
 });
 
-router.route("/").get((req, res) => {
+router.route("/get/file").get((req, res) => {
   Code.find()
     .then((codes) => {
       res.json(codes);
