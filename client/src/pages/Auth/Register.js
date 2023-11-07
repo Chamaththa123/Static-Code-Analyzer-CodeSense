@@ -53,52 +53,52 @@ function Register() {
           <center><pre><h3>Create Account</h3></pre></center>
           <Form.Group className="mb-3" controlId="formGridAddress2">
             <pre><Form.Label>User Name :</Form.Label>
-            <Form.Control
-              placeholder="Enter User Name"
-              style={{ fontSize: '13px', padding: '10px' }}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
+              <Form.Control
+                placeholder="Enter User Name"
+                style={{ fontSize: '13px', padding: '10px' }}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
             </pre>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGridEmail">
             <pre><Form.Label>Email :</Form.Label>
-            <Form.Control
-              type="email"
-              placeholder="Enter Email"
-              style={{ fontSize: '13px', padding: '10px' }}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
+              <Form.Control
+                type="email"
+                placeholder="Enter Email"
+                style={{ fontSize: '13px', padding: '10px' }}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </pre>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGridAddress2">
             <pre><Form.Label>What is your favorite coding language ?</Form.Label>
-            <Form.Control
-              placeholder="Enter Answer"
-              style={{ fontSize: '13px', padding: '10px' }}
-              value={answer}
-              onChange={(e) => setAnswer(e.target.value)}
-            />
-            <Form.Text style={{ color: '#cacaca', marginTop: '-20%' }}>
-              <pre>** This answer is used to reset the password.</pre>
-            </Form.Text>
+              <Form.Control
+                placeholder="Enter Answer"
+                style={{ fontSize: '13px', padding: '10px' }}
+                value={answer}
+                onChange={(e) => setAnswer(e.target.value)}
+              />
+              <Form.Text style={{ color: '#cacaca', marginTop: '-20%' }}>
+                <pre>** This answer is used to reset the password.</pre>
+              </Form.Text>
             </pre>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formGridPassword">
             <pre> <Form.Label>Password :</Form.Label>
-            <div className="password-input">
-              <Form.Control
-                type={showPassword ? "text" : "password"} // Show/hide password
-                placeholder="Enter Password"
-                value={password}
-              onChange={(e) => setPassword(e.target.value)}
-                style={{ fontSize: '13px', padding: '10px' }}
-              />
-              <span className="password-toggle" onClick={togglePasswordVisibility} style={{float:'right',marginTop:'-8%',color:'gray',marginRight:'3%'}}>
-                {showPassword ? <FiEye /> : <FiEyeOff />}
-              </span>
-            </div>
+              <div className="password-input">
+                <Form.Control
+                  type={showPassword ? "text" : "password"} // Show/hide password
+                  placeholder="Enter Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  style={{ fontSize: '13px', padding: '10px' }}
+                />
+                <span className="password-toggle" onClick={togglePasswordVisibility} style={{ float: 'right', marginTop: '-8%', color: 'gray', marginRight: '3%' }}>
+                  {showPassword ? <FiEye /> : <FiEyeOff />}
+                </span>
+              </div>
             </pre>
           </Form.Group>
           <pre><Button variant="primary" type="submit" style={{ width: '100%', backgroundColor: '#181833' }}>
