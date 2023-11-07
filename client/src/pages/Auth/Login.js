@@ -7,21 +7,21 @@ import logo from '../../images/StaticAnalysis.png'
 import './Login.css'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { FiEye, FiEyeOff } from 'react-icons/fi'; // Import eye icons
 
-function Start() {
+function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
   const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
+  // Function to toggle password visibility
   function togglePasswordVisibility() {
     setShowPassword(!showPassword);
   }
 
+  // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -29,22 +29,21 @@ function Start() {
         email,
         password,
       });
-      if (res && res.data) {
-        if (res.data.success) {
-          setAuth({
-            ...auth,
-            user: res.data.user,
-            token: res.data.token,
-          });
-          localStorage.setItem("auth", JSON.stringify(res.data));
-          navigate("/Upload");
-        } else {
-          toast.error(res.data.message); // Display error toast
-        }
+      if (res && res.data.success) {
+        window.alert(res.data && res.data.message);
+        setAuth({
+          ...auth,
+          user: res.data.user,
+          token: res.data.token,
+        });
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate("/Upload");
+      } else {
+        window.alert(res.data.message)
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something Went Wrong!!"); // Display error toast
+      window.alert("Something Wrong!!")
     }
   };
 
@@ -54,7 +53,7 @@ function Start() {
       <img src={logo} className='start2' />
 
       <div className="button-container21">
-        <span style={{ fontWeight: 200 }}><i>CodeSense</i></span>
+        <span style={{ fontWeight: 200 }}><><i>CodeSense</i></></span>
       </div>
 
       <div className="button-container1">
@@ -71,7 +70,7 @@ function Start() {
             <pre>
               <div className="password-input">
                 <Form.Control
-                  type={showPassword ? "text" : "password"}
+                  type={showPassword ? "text" : "password"} // Show/hide password
                   placeholder="Password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -95,10 +94,8 @@ function Start() {
           }} href="" style={{ textDecoration: 'none' }}>Register</a></pre></center>
         </Form>
       </div>
-
-      <ToastContainer />
     </div>
   )
 }
 
-export default Start;
+export default Login
