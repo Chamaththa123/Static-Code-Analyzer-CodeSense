@@ -11,7 +11,7 @@ function Sidebar() {
         <pre className='CodeSense'><i>CodeSense</i></pre>
         <br/>
   <a href="/Upload">Analyse Code</a>
-  <a href="#services">WCC Metrice</a>
+  <a href="/Profile">Profile</a>
   <a href="/RateUs">Rate Us</a>
 </div>
     </div>

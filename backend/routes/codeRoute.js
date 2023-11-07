@@ -2,6 +2,7 @@ import express from "express";
 import Code from "../models/codeModel.js";
 import multer from "multer";
 import path from "path";
+import { requireSignIn } from "../middlewares/authMiddleware.js";
 
 const router = express.Router();
 
@@ -54,8 +55,10 @@ router.post('/file/save', upload.single("file"), (req, res) => {
     });
 });
 
-router.route("/get/file").get((req, res) => {
-    Code.find()
+router.get('/user/codes', requireSignIn, (req, res) => {
+    const userId = req.user._id; // Get the user ID from the authenticated request
+
+    Code.find({ userId })
         .then((codes) => {
             res.json(codes);
         })
