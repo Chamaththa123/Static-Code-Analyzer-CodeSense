@@ -1,18 +1,19 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const fileSchema = new mongoose.Schema({
-    userId: {
-        type: String,
-        required: true
+const codeSchema = new mongoose.Schema(
+    {
+        file: {
+            type: String,
+            required: true,
+        },
+        userId: {
+            type: String,
+            required: true,
+        },
     },
-    file: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: String,
-        required: true
+    {
+        timestamps: true
     }
-});
+);
 
-export default mongoose.model("file", fileSchema);
+export default mongoose.model("file", codeSchema);
