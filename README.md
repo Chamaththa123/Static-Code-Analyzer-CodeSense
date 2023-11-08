@@ -46,7 +46,7 @@
 
 # Getting Started
 1. Clone this repository. : gh repo clone Chamaththa123/Static-Code-Analyzer<br>
-2. Install the required dependencies for both the frontend and backend. : npm install<br>
+2. Install the necessary dependencies using `npm install` in both the client and server directories.<br>
 3. Set up a MongoDB database and configure the connection in the backend.<br>
 4. Start the server and the React development server. : npm start<br>
 5. Access the web app and begin analyzing your Java code.<br>
