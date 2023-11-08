@@ -47,6 +47,12 @@
 4. Start the server and the React development server. : npm start<br>
 5. Access the web app and begin analyzing your Java code.<br>
 
-# Some UI
+# UI
 
-<img src='https://firebasestorage.googleapis.com/v0/b/test-reactnative-9bda1.appspot.com/o/wallpaperbetter.com_1920x1080%20(2).jpg?alt=media&token=c04d6674-cad8-4e68-912a-fa88f7e5ee0a'>
+<img src='https://firebasestorage.googleapis.com/v0/b/test-reactnative-9bda1.appspot.com/o/1.PNG?alt=media&token=b324a49c-14ea-4dd1-808e-9ddba00eb9d8'>
+<img src='https://firebasestorage.googleapis.com/v0/b/test-reactnative-9bda1.appspot.com/o/2.PNG?alt=media&token=1974de5d-9e49-4672-bdf9-38e24d69f3db'>
+<img src='https://firebasestorage.googleapis.com/v0/b/test-reactnative-9bda1.appspot.com/o/3.PNG?alt=media&token=00b54dd9-aacc-40c1-8447-532256abdc80'>
+<img src=''>
+<img src=''>
+<img src=''>
+<img src=''>
