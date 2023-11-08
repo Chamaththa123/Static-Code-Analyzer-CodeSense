@@ -69,7 +69,6 @@ function UserUploadedFiles() {
                                             <center><img src={download} onClick={() => handleDownload(file.file)} alt='download.gif' style={{ width: '17%', borderRadius: '30px', cursor: 'pointer' }} /></center>
                                         </Col>
                                     </Row>
-
                                 </Card>
                             </span>
                         ))
