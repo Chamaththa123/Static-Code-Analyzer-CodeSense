@@ -29,6 +29,7 @@
 <li>Express.js: Handling routing and API endpoints.</li>
 <li>MongoDB: Storing user profiles, uploaded code, and reviews.</li>
 <br>
+<p>Other:</p>
 <li>Java Parser Libraries: Utilized to analyze and parse Java code.</li>
 <li>Code Analysis Libraries: Used to calculate code complexity and detect syntax errors.</li>
 <li>User Authentication: Implemented user registration and login functionality using industry-standard authentication methods.</li><br>
