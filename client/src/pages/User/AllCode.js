@@ -28,9 +28,25 @@ function UserUploadedFiles() {
             });
     };
 
+    const handleDownload = (fileName) => {
+        axios
+            .get(`http://localhost:8000/file/download/${fileName}`)
+            .then((response) => {
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", fileName);
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch((error) => {
+                alert("Error downloading file: " + error.message);
+            });
+    };
     return (
         <div>
-            <h2>Uploaded Files</h2>
+           <i> <h4>My Files</h4></i><br/>
             {loading ? (
                 <p>Loading files...</p>
             ) : (
@@ -40,20 +56,20 @@ function UserUploadedFiles() {
                     ) : (
                         userFiles.map((file) => (
                             <span key={file._id}>
-                                <Card style={{ borderColor:'white',margin:'1%' }}>
+                                <Card style={{ borderColor: 'white', margin: '1%' }}>
                                     <Row>
                                         <Col>
-                                        <img src={java} alt='java.png' style={{ width: '20%' }} />
+                                            <img src={java} alt='java.png' style={{ width: '20%' }} />
                                         </Col>
                                         <Col>
-                                        {file.file}<br/>
-                                        {new Date(file.createdAt).toLocaleString()}
+                                            {file.file}<br />
+                                            {new Date(file.createdAt).toLocaleString()}
                                         </Col>
                                         <Col>
-                                        <center><img src={download} alt='download.gif' style={{ width: '17%',borderRadius:'30px' }} /></center>
+                                            <center><img src={download} onClick={() => handleDownload(file.file)} alt='download.gif' style={{ width: '17%', borderRadius: '30px', cursor: 'pointer' }} /></center>
                                         </Col>
                                     </Row>
-                                   
+
                                 </Card>
                             </span>
                         ))
