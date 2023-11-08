@@ -30,14 +30,20 @@
 <li>Node.js: Serving as the server-side runtime environment.</li>
 <li>Express.js: Handling routing and API endpoints.</li>
 <li>MongoDB: Storing user profiles, uploaded code, and reviews.</li>
-<br><br/>
+<br>
 <p>Database:</p>
 <li>MongoDB: Storing user data, uploaded code files, and reviews.</li>
 <br><br/>
 <p>Authentication:</p>
 <li>JSON Web Tokens (JWT): Securing user authentication and authorization.</li>
-<br><br/>
+<br>
 <p>Styling:</p>
 <li>CSS and React Boostrap.</li>
 
+# Getting Started
+1.Clone this repository.
+2.Install the required dependencies for both the frontend and backend.
+3.Configure your MongoDB connection.
+4.Start the server and the React development server.
+5.Access the web app and begin analyzing your Java code.
 
