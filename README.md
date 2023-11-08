@@ -31,8 +31,7 @@
 <br>
 <p>Other:</p>
 <li>Java Parser Libraries: Utilized to analyze and parse Java code.</li>
-<li>Code Analysis Libraries: Used to calculate code complexity and detect syntax errors.</li>
-<li>User Authentication: Implemented user registration and login functionality using industry-standard authentication methods.</li><br>
+<li>Code Analysis Libraries: Used to calculate code complexity and detect syntax errors.</li><br>
 <p>Database:</p>
 <li>MongoDB: Storing user data, uploaded code files, and reviews.</li>
 <br>
