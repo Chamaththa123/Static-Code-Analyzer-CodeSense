@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import java from '../../images/java.png'
+import download from '../../images/download.gif'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function UserUploadedFiles() {
     const [userFiles, setUserFiles] = useState([]);
@@ -36,20 +40,21 @@ function UserUploadedFiles() {
                     ) : (
                         userFiles.map((file) => (
                             <span key={file._id}>
-                                <Card>
-      <Card.Body>This is some text within a card body.</Card.Body>
-    </Card>
-                                <div>
-                                    <strong>File Name:</strong> {file.file}
-                                </div>
-                                <div>
-                                    <strong>Uploaded At:</strong> {new Date(file.createdAt).toLocaleString()}
-                                </div>
-                                <div>
-                                    <a href={`http://localhost:8000/uploads/${file.file}`} target="_blank" rel="noreferrer">
-                                        Download
-                                    </a>
-                                </div>
+                                <Card style={{ borderColor:'white',margin:'1%' }}>
+                                    <Row>
+                                        <Col>
+                                        <img src={java} alt='java.png' style={{ width: '20%' }} />
+                                        </Col>
+                                        <Col>
+                                        {file.file}<br/>
+                                        {new Date(file.createdAt).toLocaleString()}
+                                        </Col>
+                                        <Col>
+                                        <center><img src={download} alt='download.gif' style={{ width: '17%',borderRadius:'30px' }} /></center>
+                                        </Col>
+                                    </Row>
+                                   
+                                </Card>
                             </span>
                         ))
                     )}
