@@ -8,6 +8,7 @@ import UploadCode from "./pages/UploadCode";
 import Start from "./pages/Start";
 import Review from "./pages/Review/Review";
 import Profile from "./pages/User/Profile";
+import Help from "./pages/Help/Help";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/Login" element={<Login />} />
         <Route path="/Upload" element={<UploadCode />} />
         <Route path="/RateUs" element={<Review />} />
+        <Route path="/Help" element={<Help />} />
 
         <Route path="/Profile" element={<Profile />} />
         <Route path="/dashboard" element={<PrivateRoute />}>
