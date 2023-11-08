@@ -46,7 +46,7 @@ function UserUploadedFiles() {
     };
     return (
         <div>
-           <i> <h4>My Files</h4></i><br/>
+            <i> <h4>My Files</h4></i><br />
             {loading ? (
                 <p>Loading files...</p>
             ) : (
@@ -66,7 +66,7 @@ function UserUploadedFiles() {
                                             {new Date(file.createdAt).toLocaleString()}
                                         </Col>
                                         <Col>
-                                            <center><img src={download} onClick={() => handleDownload(file.file)} alt='download.gif' style={{ width: '17%', borderRadius: '30px', cursor: 'pointer' }} /></center>
+                                            <center><Button onClick={() => handleDownload(file.file)} style={{backgroundColor:'#0e0e1f'}}>Download File</Button></center>
                                         </Col>
                                     </Row>
                                 </Card>
