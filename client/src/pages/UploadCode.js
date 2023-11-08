@@ -306,9 +306,9 @@ function UploadCode() {
             {file ? (
               <div>
                 <br />
-                
-                  <Button className="submit-btn" type="submit">Save Code</Button>
-                
+
+                <Button className="submit-btn" type="submit">Save Code</Button>
+
               </div>
             ) : (
 
@@ -435,7 +435,7 @@ function UploadCode() {
                 </Accordion.Item>
               </Accordion>
             )}
-            </form>
+          </form>
         </div>
       </div>
     </div>
