@@ -76,4 +76,14 @@ router.route("/code").get((req, res) => {
     })
 })
 
+router.get("/file/download/:fileName", (req, res) => {
+    const filePath = path.join(__dirname, "../../client/public/uploads", req.params.fileName);
+
+    if (fs.existsSync(filePath)) {
+        res.download(filePath);
+    } else {
+        res.status(404).json({ error: "File not found" });
+    }
+});
+
 export default router;
