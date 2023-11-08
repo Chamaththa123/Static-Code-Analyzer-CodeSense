@@ -1,7 +1,4 @@
-# Java Code Analysis App
-
-fsefsdsdvds
-dsvdsv
+# Java Code Analysis Web App
 
 # Introduction
 
@@ -10,15 +7,37 @@ dsvdsv
 # Features
 
 <ul>
-<li>User Management</li>
+<li>User Management: register, login, profile</li>
 <li>Code Complexity Analysis: Analyze the complexity of your Java code, helping you maintain clean and efficient software.</li>
 <li>Software Composition Analysis Metrics: Calculate metrics related to your code's structure, including class counts, and more.</li>
 <li>Syntax Error Detection: Identify and highlight syntax errors within the uploaded Java code, making it easier to catch and correct mistakes.</li>
 <li>Code Duplication Detection: Find and display duplicated code sections, offering recommendations to refactor and reduce redundancy.</li>
 <li>Code Revision: Save and access previously uploaded code files in your user profile for future reference and analysis.</li>
 <li>User Reviews: Allow users to provide feedback and reviews about the tool, helping to improve and enhance its features.</li>
-<li>Review Management</li>
 </ul>
 
 # Technologies Used
 <p>This web app is built using the MERN (MongoDB, Express, React, Node.js) stack, along with various other technologies and libraries:</p>
+<br><br/>
+<p>Frontend:</p>
+<li>React: Building the user interface and components.</li>
+<li>Axios: Handling HTTP requests to the backend.</li>
+<li>Syntax Highlighting: For displaying code with proper formatting.</li>
+<li>JavaParser: Parsing and analyzing Java code files.</li>
+<li>Other NPM packages for code analysis and duplication detection.</li>
+<br><br/>
+<p>Backend:</p>
+<li>Node.js: Serving as the server-side runtime environment.</li>
+<li>Express.js: Handling routing and API endpoints.</li>
+<li>MongoDB: Storing user profiles, uploaded code, and reviews.</li>
+<br><br/>
+<p>Database:</p>
+<li>MongoDB: Storing user data, uploaded code files, and reviews.</li>
+<br><br/>
+<p>Authentication:</p>
+<li>JSON Web Tokens (JWT): Securing user authentication and authorization.</li>
+<br><br/>
+<p>Styling:</p>
+<li>CSS and React Boostrap.</li>
+
+
