@@ -41,9 +41,8 @@
 <li>CSS and React Boostrap.</li>
 
 # Getting Started
-1. Clone this repository.<br>
-2. Install the required dependencies for both the frontend and backend.<br>
+1. Clone this repository. : gh repo clone Chamaththa123/Static-Code-Analyzer<br>
+2. Install the required dependencies for both the frontend and backend. : npm install<br>
 3. Configure your MongoDB connection.<br>
-4. Start the server and the React development server.<br>
+4. Start the server and the React development server. : npm start<br>
 5. Access the web app and begin analyzing your Java code.<br>
-
