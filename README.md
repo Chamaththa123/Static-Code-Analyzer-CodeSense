@@ -25,18 +25,14 @@
 <li>Syntax Highlighting: For displaying code with proper formatting.</li>
 <li>JavaParser: Parsing and analyzing Java code files.</li>
 <li>Other NPM packages for code analysis and duplication detection.</li>
-<br>
 <p>Backend:</p>
 <li>Node.js: Serving as the server-side runtime environment.</li>
 <li>Express.js: Handling routing and API endpoints.</li>
 <li>MongoDB: Storing user profiles, uploaded code, and reviews.</li>
-<br>
 <p>Database:</p>
 <li>MongoDB: Storing user data, uploaded code files, and reviews.</li>
-<br><br/>
 <p>Authentication:</p>
 <li>JSON Web Tokens (JWT): Securing user authentication and authorization.</li>
-<br>
 <p>Styling:</p>
 <li>CSS and React Boostrap.</li>
 
