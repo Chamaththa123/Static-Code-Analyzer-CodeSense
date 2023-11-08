@@ -46,3 +46,7 @@
 3. Configure your MongoDB connection.<br>
 4. Start the server and the React development server. : npm start<br>
 5. Access the web app and begin analyzing your Java code.<br>
+
+# UI
+
+<img src='https://firebasestorage.googleapis.com/v0/b/test-reactnative-9bda1.appspot.com/o/wallpaperbetter.com_1920x1080%20(2).jpg?alt=media&token=c04d6674-cad8-4e68-912a-fa88f7e5ee0a'>
