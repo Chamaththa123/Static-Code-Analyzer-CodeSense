@@ -1,5 +1,5 @@
 # Java Code Analysis Web App
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=Chamaththa123/Static-Code-Analyzer&label=Profile%20views&color=0e75b6&style=flat" alt="chamaththa123" /> </p>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=chamaththa123/Static-Code-Analyzer&label=Profile%20views&color=0e75b6&style=flat" alt="chamaththa123" /> </p>
 # Introduction
 
 <p>The Code Analyzer Web App is a powerful tool designed to analyze Java code files, calculate code complexity, identify syntax errors, and help you maintain clean and efficient code. It provides a range of features to enhance the coding experience, from complexity analysis to code duplication detection.</p>
