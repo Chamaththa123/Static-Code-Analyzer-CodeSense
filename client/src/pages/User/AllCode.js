@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 function UserUploadedFiles() {
     const [userFiles, setUserFiles] = useState([]);
@@ -33,7 +35,10 @@ function UserUploadedFiles() {
                         <p>No files uploaded yet.</p>
                     ) : (
                         userFiles.map((file) => (
-                            <li key={file._id}>
+                            <span key={file._id}>
+                                <Card>
+      <Card.Body>This is some text within a card body.</Card.Body>
+    </Card>
                                 <div>
                                     <strong>File Name:</strong> {file.file}
                                 </div>
@@ -45,7 +50,7 @@ function UserUploadedFiles() {
                                         Download
                                     </a>
                                 </div>
-                            </li>
+                            </span>
                         ))
                     )}
                 </ul>
