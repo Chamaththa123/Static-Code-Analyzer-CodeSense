@@ -8,5 +8,7 @@ dsvdsv
 # Features
 
 <ul>
-<li>fbdbdb</li>
+<li>User Management</li>
+<li>Code Analysis</li>
+<li>Review Management</li>
 </ul>
