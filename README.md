@@ -42,14 +42,13 @@
 <p>Styling:</p>
 <li>CSS and React Boostrap.</li><br>
 
-<li>CSS and React Boostrap.</li>
 
 # Getting Started
-1. Clone this repository. : gh repo clone Chamaththa123/Static-Code-Analyzer<br>
-2. Install the necessary dependencies using `npm install` in both the client and server directories.<br>
-3. Set up a MongoDB database and configure the connection in the backend.<br>
-4. Start the server and the React development server. : npm start<br>
-5. Access the web app and begin analyzing your Java code.<br>
+1. Clone this repository. : `gh repo clone Chamaththa123/Static-Code-Analyzer`<br>
+2. Install the necessary dependencies using `npm install` in both the client and backend directories.<br>
+3. Set up your MongoDB database and configure the connection in the `backend/config/db.js` file.<br>
+4. Start the backend using `npm start` in the `backend` directory.<br>
+5. Start the React app using `npm start` in the `client` directory.<br>
 
 # UI
 
