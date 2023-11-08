@@ -11,7 +11,7 @@ const codeStorage = multer.diskStorage({
         callback(null, "../client/public/uploads");
     },
     filename: (req, file, callback) => {
-        callback(null, `code-${Date.now()}.${path.extname(file.originalname)}`);
+        callback(null, `${file.originalname}`);
     },
 });
 
