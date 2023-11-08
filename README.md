@@ -18,14 +18,14 @@
 
 # Technologies Used
 <p>This web app is built using the MERN (MongoDB, Express, React, Node.js) stack, along with various other technologies and libraries:</p>
-<br><br/>
+<br>
 <p>Frontend:</p>
 <li>React: Building the user interface and components.</li>
 <li>Axios: Handling HTTP requests to the backend.</li>
 <li>Syntax Highlighting: For displaying code with proper formatting.</li>
 <li>JavaParser: Parsing and analyzing Java code files.</li>
 <li>Other NPM packages for code analysis and duplication detection.</li>
-<br><br/>
+<br>
 <p>Backend:</p>
 <li>Node.js: Serving as the server-side runtime environment.</li>
 <li>Express.js: Handling routing and API endpoints.</li>
