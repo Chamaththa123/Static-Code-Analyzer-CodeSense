@@ -68,6 +68,20 @@
   font-size: 55px;
 }
 
+.button-container3 {
+  position: absolute;
+  top: 4%;
+  left: 6%;
+  transform: translateX(-50%);
+  color: #cacaca;
+  font-weight: 400;
+  font-size: 17px;
+}
+
+.button-container3 a{
+  cursor: pointer;
+}
+
 .s-button{
     background-color: #181833;
 }

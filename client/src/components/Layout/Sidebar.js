@@ -13,7 +13,6 @@ function Sidebar() {
         <a href="/Upload">Analyse Code</a>
         <a href="/Profile">Profile</a>
         <a href="/RateUs">Rate Us</a>
-        <a href="/help" style={{ fontSize: '16px', marginTop: '140%' }}>? Help</a>
       </div>
     </div>
   )
